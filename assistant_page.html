@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>CareConnect AI - Assistant</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .ai-gradient-border {
+            position: relative;
+            background: #ffffff;
+            border-radius: 16px;
+        }
+        .ai-gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: 17px;
+            padding: 1px;
+            background: linear-gradient(135deg, #005c55, #6df5e1);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bdc9c6;
+            border-radius: 10px;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#006b5f",
+                    "on-background": "#191c1e",
+                    "on-tertiary-container": "#ccf0ff",
+                    "tertiary-fixed-dim": "#6cd3f7",
+                    "on-tertiary-fixed-variant": "#004e61",
+                    "surface-variant": "#e0e3e5",
+                    "primary-fixed-dim": "#80d5cb",
+                    "surface": "#f7f9fb",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#006f64",
+                    "surface-tint": "#006a63",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001f28",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#bdc9c6",
+                    "primary-fixed": "#9cf2e8",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "secondary-container": "#6df5e1",
+                    "on-surface-variant": "#3e4947",
+                    "on-secondary-fixed-variant": "#005048",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eceef0",
+                    "on-secondary-fixed": "#00201c",
+                    "outline": "#6e7977",
+                    "inverse-primary": "#80d5cb",
+                    "primary": "#005c55",
+                    "on-primary-fixed": "#00201d",
+                    "on-surface": "#191c1e",
+                    "background": "#f7f9fb",
+                    "surface-bright": "#f7f9fb",
+                    "tertiary": "#00596e",
+                    "primary-container": "#0f766e",
+                    "surface-dim": "#d8dadc",
+                    "tertiary-fixed": "#b7eaff",
+                    "surface-container-highest": "#e0e3e5",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-primary-container": "#a3faef",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-container-low": "#f2f4f6",
+                    "inverse-surface": "#2d3133",
+                    "secondary-fixed": "#71f8e4",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#00738e",
+                    "on-primary-fixed-variant": "#00504a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container_margin_mobile": "16px",
+                    "xs": "4px",
+                    "grid_columns_desktop": "12",
+                    "container_margin_desktop": "40px",
+                    "xxl": "48px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "xl": "32px",
+                    "grid_gutter": "24px",
+                    "lg": "24px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+    <!-- TopAppBar -->
+    <header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm docked full-width top-0 sticky z-50 flex justify-between items-center px-container_margin_mobile md:px-container_margin_desktop h-16 w-full">
+        <div class="flex items-center gap-4">
+            <button class="hover:bg-surface-variant/50 dark:hover:bg-surface-container-highest/50 transition-colors p-2 rounded-full active:scale-95 duration-100">
+                <span class="material-symbols-outlined text-primary dark:text-primary-fixed">menu</span>
+            </button>
+            <h1 class="text-title-lg font-title-lg font-bold text-primary dark:text-primary-fixed">CareConnect AI</h1>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="hidden md:flex items-center gap-6 px-4">
+                <span class="font-label-md text-label-md text-on-surface-variant dark:text-outline cursor-pointer hover:text-primary transition-colors">History</span>
+                <span class="font-label-md text-label-md text-primary dark:text-primary-fixed font-bold cursor-pointer">Assistant</span>
+            </div>
+            <button class="bg-error text-on-error px-4 py-1.5 rounded-full font-label-md text-label-md font-bold shadow-md hover:opacity-90 transition-opacity">
+                SOS
+            </button>
+        </div>
+    </header>
+    <main class="flex-grow w-full max-w-4xl mx-auto flex flex-col px-container_margin_mobile md:px-0 h-[calc(100vh-144px)] mb-20 md:mb-0">
+        <!-- Chat Area -->
+        <div class="flex-grow overflow-y-auto custom-scrollbar py-lg space-y-lg flex flex-col" id="chat-container">
+            <!-- AI Welcome Message -->
+            <div class="flex gap-md items-start max-w-[85%] mt-lg">
+                <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0 shadow-sm">
+                    <span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+                </div>
+                <div class="ai-gradient-border p-lg shadow-sm">
+                    <p class="font-body-md text-on-surface leading-relaxed">
+                        Hello! I'm your AI health assistant. I can help you understand symptoms, analyze recent vitals, or provide guidance based on your profile. How are you feeling today?
+                    </p>
+                    <div class="mt-sm flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-[16px]">verified_user</span>
+                        <span class="text-label-sm font-label-sm text-outline">Clinical Reference Available</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Suggested Actions (Bento Pattern) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-md mt-xl" id="welcome-prompts">
+                <button class="p-lg bg-surface-container-lowest border border-outline-variant hover:border-primary hover:bg-secondary-container/10 transition-all rounded-xl text-left flex flex-col gap-sm group" onclick="sendPrompt('Analyze my health')">
+                    <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">analytics</span>
+                    <div>
+                        <h3 class="font-label-md text-on-surface font-bold">Analyze my health</h3>
+                        <p class="text-label-sm text-on-surface-variant">Review your recent vitals and lab results.</p>
+                    </div>
+                </button>
+                <button class="p-lg bg-surface-container-lowest border border-outline-variant hover:border-primary hover:bg-secondary-container/10 transition-all rounded-xl text-left flex flex-col gap-sm group" onclick="sendPrompt('Check symptoms')">
+                    <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">medical_services</span>
+                    <div>
+                        <h3 class="font-label-md text-on-surface font-bold">Check symptoms</h3>
+                        <p class="text-label-sm text-on-surface-variant">Identify potential causes for how you feel.</p>
+                    </div>
+                </button>
+                <button class="p-lg bg-surface-container-lowest border border-outline-variant hover:border-primary hover:bg-secondary-container/10 transition-all rounded-xl text-left flex flex-col gap-sm group" onclick="sendPrompt('Health advice')">
+                    <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">tips_and_updates</span>
+                    <div>
+                        <h3 class="font-label-md text-on-surface font-bold">Health advice</h3>
+                        <p class="text-label-sm text-on-surface-variant">Personalized wellness and nutrition tips.</p>
+                    </div>
+                </button>
+                <button class="p-lg bg-surface-container-lowest border border-outline-variant hover:border-primary hover:bg-secondary-container/10 transition-all rounded-xl text-left flex flex-col gap-sm group" onclick="sendPrompt('Explain my risk score')">
+                    <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">donut_large</span>
+                    <div>
+                        <h3 class="font-label-md text-on-surface font-bold">Explain my risk score</h3>
+                        <p class="text-label-sm text-on-surface-variant">Break down your cardiovascular risk assessment.</p>
+                    </div>
+                </button>
+            </div>
+            <!-- User Response -->
+            <div class="space-y-lg flex flex-col pb-6" id="chat-messages"></div>
+        </div>
+        <!-- Input Section -->
+        <div class="pb-xl md:pb-lg pt-md">
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Multilingual & Context Chip -->
+                <div class="flex justify-between items-center mb-sm px-2">
+                    <div class="flex items-center gap-2 bg-surface-container-high px-3 py-1 rounded-full border border-outline-variant/30">
+                        <span class="material-symbols-outlined text-[14px]">translate</span>
+                        <span class="text-label-sm font-label-sm text-on-surface-variant">English | Español | Français</span>
+                    </div>
+                    <div class="text-label-sm font-label-sm text-outline flex items-center gap-1">
+                        <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                        CareConnect AI is active
+                    </div>
+                </div>
+                <!-- Input Box -->
+                <div class="glass-panel border border-outline-variant/50 rounded-xxl p-2 flex items-end gap-2 shadow-lg focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+                    <button class="p-3 hover:bg-surface-variant/50 rounded-full transition-colors text-outline">
+                        <span class="material-symbols-outlined">attach_file</span>
+                    </button>
+                    <textarea class="flex-grow bg-transparent border-none focus:ring-0 py-3 font-body-md text-on-surface placeholder:text-outline resize-none max-h-48 custom-scrollbar" id="userInput" placeholder="Type health questions here..." rows="1"></textarea>
+                    <div class="flex items-center gap-1 pb-1 pr-1">
+                        <button class="p-3 hover:bg-surface-variant/50 rounded-full transition-colors text-primary">
+                            <span class="material-symbols-outlined">mic</span>
+                        </button>
+                        <button class="p-3 bg-primary text-on-primary rounded-full shadow-md hover:bg-primary-container transition-all active:scale-90 duration-200" onclick="handleSend()">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">send</span>
+                        </button>
+                    </div>
+                </div>
+                <p class="text-center text-[10px] text-outline mt-3">CareConnect AI can make mistakes. Please consult a healthcare professional for serious medical concerns.</p>
+            </div>
+        </div>
+    </main>
+    <!-- BottomNavBar -->
+    <nav class="bg-surface/90 dark:bg-surface-container-lowest/90 backdrop-blur-xl border-t border-outline-variant/20 shadow-[0_-4px_20px_rgba(15,23,42,0.05)] fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe md:hidden">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="/">
+            <span class="material-symbols-outlined">home</span>
+            <span class="font-label-sm text-label-sm">Home</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="/health">
+            <span class="material-symbols-outlined">monitor_heart</span>
+            <span class="font-label-sm text-label-sm">Health</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-primary bg-secondary-container/30 rounded-full px-4 py-1 scale-90 duration-200" href="/assistant">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+            <span class="font-label-sm text-label-sm">Assistant</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="/alerts">
+            <span class="material-symbols-outlined">notifications</span>
+            <span class="font-label-sm text-label-sm">Alerts</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="/profile">
+            <span class="material-symbols-outlined">person</span>
+            <span class="font-label-sm text-label-sm">Profile</span>
+        </a>
+    </nav>
+    <script>
+        const chatContainer = document.getElementById('chat-container');
+        const chatMessages = document.getElementById('chat-messages');
+        const welcomePrompts = document.getElementById('welcome-prompts');
+        const userInput = document.getElementById('userInput');
+
+        function appendMessage(role, text) {
+            const wrapper = document.createElement('div');
+            wrapper.className = `flex gap-md items-start max-w-[85%] ${role === 'user' ? 'ml-auto flex-row-reverse' : ''}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = `w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-sm ${role === 'user' ? 'bg-secondary' : 'bg-primary-container'}`;
+            avatar.innerHTML = `<span class="material-symbols-outlined ${role === 'user' ? 'text-on-secondary' : 'text-on-primary-container'}" style="font-variation-settings: 'FILL' 1;">${role === 'user' ? 'person' : 'smart_toy'}</span>`;
+            
+            const bubble = document.createElement('div');
+            bubble.className = role === 'user' 
+                ? 'bg-secondary text-on-secondary p-lg rounded-2xl rounded-tr-none shadow-sm font-body-md' 
+                : 'ai-gradient-border p-lg shadow-sm font-body-md text-on-surface leading-relaxed';
+            bubble.textContent = text;
+            
+            wrapper.appendChild(avatar);
+            wrapper.appendChild(bubble);
+            chatMessages.appendChild(wrapper);
+            
+            chatContainer.scrollTo({ top: chatContainer.scrollHeight, behavior: 'smooth' });
+        }
+
+        function handleSend() {
+            const text = userInput.value.trim();
+            if (!text) return;
+            
+            welcomePrompts.style.display = 'none';
+            appendMessage('user', text);
+            userInput.value = '';
+            userInput.style.height = 'auto';
+
+            // Simulate AI thinking
+            setTimeout(() => {
+                appendMessage('ai', "I'm processing that information for you. Let me check your historical vitals to provide a complete answer...");
+            }, 800);
+        }
+
+        function sendPrompt(text) {
+            userInput.value = text;
+            handleSend();
+        }
+
+        userInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleSend();
+            }
+        });
+    </script>
+</body>
+</html>
