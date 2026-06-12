@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Public Health Analytics | CareConnect AI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#006b5f",
+                      "on-background": "#191c1e",
+                      "on-tertiary-container": "#ccf0ff",
+                      "tertiary-fixed-dim": "#6cd3f7",
+                      "on-tertiary-fixed-variant": "#004e61",
+                      "surface-variant": "#e0e3e5",
+                      "primary-fixed-dim": "#80d5cb",
+                      "surface": "#f7f9fb",
+                      "on-error-container": "#93000a",
+                      "on-secondary-container": "#006f64",
+                      "surface-tint": "#006a63",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed": "#001f28",
+                      "on-secondary": "#ffffff",
+                      "outline-variant": "#bdc9c6",
+                      "primary-fixed": "#9cf2e8",
+                      "error": "#ba1a1a",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#4fdbc8",
+                      "secondary-container": "#6df5e1",
+                      "on-surface-variant": "#3e4947",
+                      "on-secondary-fixed-variant": "#005048",
+                      "error-container": "#ffdad6",
+                      "surface-container": "#eceef0",
+                      "on-secondary-fixed": "#00201c",
+                      "outline": "#6e7977",
+                      "inverse-primary": "#80d5cb",
+                      "primary": "#005c55",
+                      "on-primary-fixed": "#00201d",
+                      "on-surface": "#191c1e",
+                      "background": "#f7f9fb",
+                      "surface-bright": "#f7f9fb",
+                      "tertiary": "#00596e",
+                      "primary-container": "#0f766e",
+                      "surface-dim": "#d8dadc",
+                      "tertiary-fixed": "#b7eaff",
+                      "surface-container-highest": "#e0e3e5",
+                      "inverse-on-surface": "#eff1f3",
+                      "on-primary-container": "#a3faef",
+                      "surface-container-high": "#e6e8ea",
+                      "surface-container-low": "#f2f4f6",
+                      "inverse-surface": "#2d3133",
+                      "secondary-fixed": "#71f8e4",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-container": "#00738e",
+                      "on-primary-fixed-variant": "#00504a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container_margin_mobile": "16px",
+                      "xs": "4px",
+                      "grid_columns_desktop": "12",
+                      "container_margin_desktop": "40px",
+                      "xxl": "48px",
+                      "sm": "8px",
+                      "base": "4px",
+                      "xl": "32px",
+                      "grid_gutter": "24px",
+                      "lg": "24px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "title-lg": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-lg-mobile": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f7f9fb;
+            font-family: 'Inter', sans-serif;
+            color: #191c1e;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .ai-insight-border {
+            border: 2px solid transparent;
+            background-image: linear-gradient(#fff, #fff), linear-gradient(to right, #005c55, #6cd3f7);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .heatmap-overlay {
+            background: radial-gradient(circle at 40% 50%, rgba(186, 26, 26, 0.4) 0%, transparent 25%),
+                        radial-gradient(circle at 70% 30%, rgba(186, 26, 26, 0.3) 0%, transparent 20%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen pb-24 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm docked full-width top-0 sticky z-50 flex justify-between items-center px-container_margin_mobile md:px-container_margin_desktop h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant/50 p-2 rounded-full transition-colors active:scale-95 duration-100">menu</button>
+<h1 class="text-title-lg font-title-lg font-bold text-primary">CareConnect AI</h1>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<nav class="flex gap-6">
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors" href="/community-health">Surveillance</a>
+<a class="text-primary font-bold font-label-md text-label-md" href="/health-center">Public Health Dashboard</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary transition-colors" href="/health">Population Health</a>
+</nav>
+</div>
+<button class="px-4 py-1.5 bg-error text-on-error rounded-full font-label-md text-label-md font-bold active:scale-95 transition-transform">SOS</button>
+</header>
+<main class="max-w-7xl mx-auto px-container_margin_mobile md:px-container_margin_desktop py-8">
+<!-- Dashboard Header -->
+<section class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background">Public Health Dashboard</h2>
+<p class="text-on-surface-variant font-body-md text-body-md mt-1">Real-time epidemiological monitoring &amp; community response.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 border border-outline rounded-xl font-label-md text-label-md hover:bg-surface-variant/30 transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                    Region: Metro Area
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-secondary text-on-secondary rounded-xl font-label-md text-label-md shadow-sm hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+                    Export Report
+                </button>
+</div>
+</section>
+<!-- KPI Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-grid_gutter mb-8">
+<div class="glass-card p-6 rounded-xl shadow-[0_4px_20px_rgba(15,23,42,0.05)]">
+<p class="text-on-surface-variant font-label-md text-label-md mb-2">Reported Cases</p>
+<div class="flex items-end justify-between">
+<h3 class="font-headline-md text-headline-md text-on-background">1,284</h3>
+<span class="text-error font-label-sm text-label-sm flex items-center mb-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> 12%
+                    </span>
+</div>
+</div>
+<div class="glass-card p-6 rounded-xl shadow-[0_4px_20px_rgba(15,23,42,0.05)]">
+<p class="text-on-surface-variant font-label-md text-label-md mb-2">Notifications Sent to Users</p>
+<div class="flex items-end justify-between">
+<h3 class="font-headline-md text-headline-md text-on-background">45,902</h3>
+<span class="text-secondary font-label-sm text-label-sm flex items-center mb-1">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> Reach: 98%
+                    </span>
+</div>
+</div>
+<div class="glass-card p-6 rounded-xl shadow-[0_4px_20px_rgba(15,23,42,0.05)]">
+<p class="text-on-surface-variant font-label-md text-label-md mb-2">Active Surveillance Sites</p>
+<div class="flex items-end justify-between">
+<h3 class="font-headline-md text-headline-md text-on-background">312</h3>
+<span class="text-on-surface-variant font-label-sm text-label-sm flex items-center mb-1">Stable</span>
+</div>
+</div>
+<div class="glass-card p-6 rounded-xl shadow-[0_4px_20px_rgba(15,23,42,0.05)]">
+<p class="text-on-surface-variant font-label-md text-label-md mb-2">Community Immunity Level</p>
+<div class="flex items-end justify-between">
+<h3 class="font-headline-md text-headline-md text-on-background">68.2%</h3>
+<div class="w-20 h-1.5 bg-surface-variant rounded-full overflow-hidden mb-2">
+<div class="bg-primary h-full w-[68%]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bento Layout -->
+<div class="grid grid-cols-12 gap-grid_gutter">
+<!-- Recent Community Alerts -->
+<section class="col-span-12 lg:col-span-4 flex flex-col gap-grid_gutter">
+<div class="glass-card p-6 rounded-xl shadow-[0_4px_20px_rgba(15,23,42,0.05)] flex-1">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-title-lg text-title-lg text-on-background">Recent Community Alerts</h4>
+<span class="material-symbols-outlined text-outline">history</span>
+</div>
+<div class="space-y-4">
+<div class="p-4 bg-error-container/20 border-l-4 border-error rounded-r-lg">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md text-on-error-container font-bold">High Priority</span>
+<span class="text-[10px] text-outline font-label-sm">2h ago</span>
+</div>
+<p class="text-body-md text-on-surface font-body-md text-sm">Influenza-like illness cluster detected in Sector 7 schools. Enhanced monitoring initiated.</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md text-primary font-bold">Health Advisory</span>
+<span class="text-[10px] text-outline font-label-sm">5h ago</span>
+</div>
+<p class="text-body-md text-on-surface font-body-md text-sm">Air Quality Index reached "Unhealthy" levels. Community warnings dispatched via SMS.</p>
+</div>
+<div class="p-4 bg-surface-container-low rounded-lg border border-outline-variant/30">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md text-secondary font-bold">Standard Update</span>
+<span class="text-[10px] text-outline font-label-sm">12h ago</span>
+</div>
+<p class="text-body-md text-on-surface font-body-md text-sm">Mobile vaccination clinics successfully completed operations in North District.</p>
+</div>
+</div>
+<button class="w-full mt-6 py-2 text-primary font-label-md text-label-md hover:underline decoration-2 underline-offset-4 transition-all">View All Alerts</button>
+</div>
+<!-- AI Insight Card -->
+<div class="ai-insight-border p-6 rounded-xl glass-card">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="font-label-md text-label-md font-bold text-primary">CareConnect AI Insight</span>
+</div>
+<p class="text-on-surface font-body-md text-body-md text-sm italic">"Current data suggests a 72% probability of seasonal allergy spike in the next 72 hours due to rising pollen counts and humidity. Suggest pre-emptive stocking of antihistamines in community hubs."</p>
+</div>
+</section>
+<!-- Main Data Visualizations -->
+<section class="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-grid_gutter">
+<!-- Potential Disease Clusters (Analytics) -->
+<div class="md:col-span-2 glass-card p-6 rounded-xl shadow-[0_4px_20px_rgba(15,23,42,0.05)]">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-title-lg text-title-lg text-on-background">Potential Disease Clusters</h4>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-surface-container text-outline rounded text-[10px] font-bold">7 DAYS</span>
+<span class="px-2 py-1 bg-secondary-container/30 text-secondary rounded text-[10px] font-bold">30 DAYS</span>
+</div>
+</div>
+<div class="h-64 flex items-end justify-around gap-2 mb-4 px-2">
+<!-- Chart Mockup -->
+<div class="flex flex-col items-center flex-1">
+<div class="bg-primary/20 hover:bg-primary/40 transition-colors w-full rounded-t-lg h-[40%] relative group">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">Flu: 210</div>
+</div>
+<span class="text-[10px] text-outline mt-2">Mon</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="bg-primary/20 hover:bg-primary/40 transition-colors w-full rounded-t-lg h-[55%] relative group"></div>
+<span class="text-[10px] text-outline mt-2">Tue</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="bg-primary/20 hover:bg-primary/40 transition-colors w-full rounded-t-lg h-[45%] relative group"></div>
+<span class="text-[10px] text-outline mt-2">Wed</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="bg-error/40 hover:bg-error/60 transition-colors w-full rounded-t-lg h-[85%] relative group">
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-error text-on-error px-2 py-1 rounded text-[10px] font-bold">Anomaly: 412</div>
+</div>
+<span class="text-[10px] text-outline mt-2">Thu</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="bg-primary/20 hover:bg-primary/40 transition-colors w-full rounded-t-lg h-[60%] relative group"></div>
+<span class="text-[10px] text-outline mt-2">Fri</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="bg-primary/20 hover:bg-primary/40 transition-colors w-full rounded-t-lg h-[40%] relative group"></div>
+<span class="text-[10px] text-outline mt-2">Sat</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="bg-primary/20 hover:bg-primary/40 transition-colors w-full rounded-t-lg h-[30%] relative group"></div>
+<span class="text-[10px] text-outline mt-2">Sun</span>
+</div>
+</div>
+<div class="flex justify-center gap-6 text-[11px] text-outline">
+<div class="flex items-center gap-1.5"><span class="w-3 h-3 bg-primary/20 rounded-full"></span> Predicted Trend</div>
+<div class="flex items-center gap-1.5"><span class="w-3 h-3 bg-error/40 rounded-full"></span> High Deviation</div>
+</div>
+</div>
+<!-- Affected Areas (Heatmap Thumbnail) -->
+<div class="glass-card overflow-hidden rounded-xl shadow-[0_4px_20px_rgba(15,23,42,0.05)] relative flex flex-col">
+<div class="p-6 pb-2">
+<h4 class="font-title-lg text-title-lg text-on-background">Affected Areas</h4>
+<p class="text-on-surface-variant font-label-sm text-label-sm">Heatmap analysis of Sector A-D</p>
+</div>
+<div class="relative flex-1 min-h-[220px]">
+<img alt="City Heatmap" class="w-full h-full object-cover grayscale opacity-50" data-alt="A sophisticated digital map of a modern city showing stylized urban planning blocks and streets. Overlaid on the map are translucent crimson and amber heatmap blobs indicating density and high-risk zones. The aesthetic is clean, clinical, and data-driven, using a light mode palette of whites and soft grays with vibrant medical data overlays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-qtE1BFhQGrRhCiV0IzDjHHIgSUYJR3amPqPgv4cWOg_LcCAaRML_V2PGzldV0dn0lwnO6p27IJ05YOvF0VfDYbnRfoPOeLlfxBkFo4lZ1ge5QV9JeSrDex7BkuD71SbDiq9p4XN4c3sqsw5oxF1i_5VC5s7QtxNW-Xby7aGDBOLdF-Kjm9royVo0Y6GeSJHbU4X5mLcaHiri82NjYDRpPKNocRsNWpLSiFr6eTrFoReRewlTOfEA8rTzb72rgGD7W1XM12_KXhuN"/>
+<div class="absolute inset-0 heatmap-overlay"></div>
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<button class="bg-surface/90 backdrop-blur p-1.5 rounded shadow text-primary material-symbols-outlined">zoom_in</button>
+<button class="bg-surface/90 backdrop-blur p-1.5 rounded shadow text-primary material-symbols-outlined">zoom_out</button>
+</div>
+<div class="absolute bottom-4 left-4 right-4 bg-surface/90 backdrop-blur-md p-3 rounded-lg border border-outline-variant/30 flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Sector 4: Extreme Density</span>
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+</div>
+</div>
+<!-- Reported Statistics -->
+<div class="glass-card p-6 rounded-xl shadow-[0_4px_20px_rgba(15,23,42,0.05)]">
+<h4 class="font-title-lg text-title-lg text-on-background mb-4">Transmission Dynamics</h4>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant">R0 Factor</span>
+<span class="font-label-md text-label-md font-bold text-primary">1.24</span>
+</div>
+<div class="w-full h-2 bg-surface-variant rounded-full">
+<div class="bg-primary h-full w-[45%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant">Community Mobility</span>
+<span class="font-label-md text-label-md font-bold text-secondary">82%</span>
+</div>
+<div class="w-full h-2 bg-surface-variant rounded-full">
+<div class="bg-secondary h-full w-[82%] rounded-full"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant">Symptom Search Trends</span>
+<span class="font-label-md text-label-md font-bold text-error">+14%</span>
+</div>
+<div class="w-full h-2 bg-surface-variant rounded-full">
+<div class="bg-error h-full w-[65%] rounded-full"></div>
+</div>
+</div>
+<div class="mt-4 p-3 bg-surface-container-high rounded-lg text-center">
+<p class="font-label-sm text-label-sm text-outline">Status: <span class="text-secondary font-bold">Containment Optimized</span></p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface/90 dark:bg-surface-container-lowest/90 backdrop-blur-xl border-t border-outline-variant/20 shadow-[0_-4px_20px_rgba(15,23,42,0.05)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="/home">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="/health">
+<span class="material-symbols-outlined">monitor_heart</span>
+<span class="font-label-sm text-label-sm">Health</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="/assistant">
+<span class="material-symbols-outlined">smart_toy</span>
+<span class="font-label-sm text-label-sm">Assistant</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="/community-health">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-sm text-label-sm">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="/family">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple interaction for bar chart hover states
+        document.querySelectorAll('.group').forEach(bar => {
+            bar.addEventListener('mouseenter', () => {
+                bar.classList.add('scale-x-105');
+            });
+            bar.addEventListener('mouseleave', () => {
+                bar.classList.remove('scale-x-105');
+            });
+        });
+
+        // Sticky Header Backdrop adjustment on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>

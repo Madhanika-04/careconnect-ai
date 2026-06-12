@@ -10,6 +10,7 @@ const EMERGENCY_HTML = path.join(__dirname, '..', 'emergency_page.html');
 const PREDICTION_HTML = path.join(__dirname, '..', 'prediction_page.html');
 const FAMILY_HTML = path.join(__dirname, '..', 'family_page.html');
 const COMMUNITY_HTML = path.join(__dirname, '..', 'community_health_page.html');
+const HEALTH_CENTER_HTML = path.join(__dirname, '..', 'health_center_page.html');
 
 const server = http.createServer((req, res) => {
   if (req.url === '/assistant') {
@@ -47,6 +48,16 @@ const server = http.createServer((req, res) => {
       if (err) {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end('Error loading community health page');
+      } else {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(data);
+      }
+    });
+  } else if (req.url === '/health-center') {
+    fs.readFile(HEALTH_CENTER_HTML, (err, data) => {
+      if (err) {
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end('Error loading health center page');
       } else {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(data);
