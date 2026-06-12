@@ -1,0 +1,30 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "CareConnect backend prototype",
+  "main": "dist/app/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "ts-node-dev --respawn src/app/index.ts",
+    "build": "tsc",
+    "start": "node dist/app/index.js",
+    "prisma": "prisma",
+    "migrate": "prisma migrate dev --name init",
+    "test": "jest --coverage"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "helmet": "^8.2.0",
+    "jest": "^30.4.2",
+    "prisma": "^5.15.0",
+    "@prisma/client": "^5.15.0",
+    "pg": "^8.12.0",
+    "swagger-ui-express": "^5.0.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^6.0.3"
+  }
+}

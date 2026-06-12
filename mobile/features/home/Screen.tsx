@@ -7,6 +7,7 @@ import { colors } from '../../theme/colors';
 import { radius } from '../../theme/radius';
 import { shadows } from '../../theme/shadows';
 import { Menu, Radio, MapPin, AlertTriangle, Activity, Moon, Footprints, TrendingUp, Sparkles } from 'lucide-react-native';
+import MapView from '../../components/MapView';
 
 export default function HomeScreen() {
   const { user } = useAuthStore();
@@ -117,6 +118,10 @@ export default function HomeScreen() {
           >
             <Text style={styles.viewDetailsBtnText}>View Details</Text>
           </TouchableOpacity>
+        </View>
+        {/* Leaflet Map Section */}
+        <View style={styles.mapSection}>
+          <MapView />
         </View>
 
         {/* Extra Shortcuts Row for Hackathon judging */}
@@ -229,6 +234,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderBottomWidth: 1,
     borderColor: '#E2E8F0',
+    height: 64,
   },
   menuButton: {
     padding: 4,
@@ -237,6 +243,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     color: '#0F766E',
+    flex: 1,
+    textAlign: 'center',
   },
   headerSosButton: {
     backgroundColor: '#DC2626',
@@ -371,10 +379,10 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     padding: 16,
     borderRadius: radius.md,
-    marginHorizontal: 4,
+    marginHorizontal: 6,
     ...shadows.sm,
   },
   aiShortcutBg: {
@@ -568,5 +576,9 @@ const styles = StyleSheet.create({
     color: '#334155',
     lineHeight: 18,
     fontStyle: 'italic',
+  },
+  mapSection: {
+    marginVertical: 12,
+    // height is controlled inside MapView component
   },
 });

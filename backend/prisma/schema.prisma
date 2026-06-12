@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model SosEvent {
+  id        String   @id @default(uuid())
+  uid       String
+  name      String
+  location  String
+  condition String
+  timestamp DateTime @default(now())
+}
+
+model DiseaseReport {
+  id        String   @id @default(uuid())
+  uid       String
+  disease   String
+  notes     String?
+  location  String
+  timestamp DateTime @default(now())
+}

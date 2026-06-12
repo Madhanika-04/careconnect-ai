@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { RiskCard } from '../../components/RiskCard';
 import { StyleSheet, View, Text, ScrollView, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import { useAssistantStore } from '../../store/assistantStore';
 import { useAuthStore } from '../../store/authStore';
@@ -72,14 +73,8 @@ export default function AssistantScreen() {
             </View>
 
             {/* Explainable AI Dashboard Segment */}
-            {msg.sender === 'assistant' && msg.explanationDetails && (
-              <View style={styles.shapExplanation}>
-                <View style={styles.shapHeader}>
-                  <Info size={14} color={colors.accent} />
-                  <Text style={styles.shapTitle}>AI Clinical Logic (Explainable AI)</Text>
-                </View>
-                <Text style={styles.shapContent}>{msg.explanationDetails}</Text>
-              </View>
+            {msg.sender === 'assistant' && msg.risk && (
+              <RiskCard risk={msg.risk} />
             )}
           </View>
         ))}
