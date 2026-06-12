@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Community Health Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#006b5f",
+                    "on-background": "#191c1e",
+                    "on-tertiary-container": "#ccf0ff",
+                    "tertiary-fixed-dim": "#6cd3f7",
+                    "on-tertiary-fixed-variant": "#004e61",
+                    "surface-variant": "#e0e3e5",
+                    "primary-fixed-dim": "#80d5cb",
+                    "surface": "#f7f9fb",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#006f64",
+                    "surface-tint": "#006a63",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001f28",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#bdc9c6",
+                    "primary-fixed": "#9cf2e8",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "secondary-container": "#6df5e1",
+                    "on-surface-variant": "#3e4947",
+                    "on-secondary-fixed-variant": "#005048",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eceef0",
+                    "on-secondary-fixed": "#00201c",
+                    "outline": "#6e7977",
+                    "inverse-primary": "#80d5cb",
+                    "primary": "#005c55",
+                    "on-primary-fixed": "#00201d",
+                    "on-surface": "#191c1e",
+                    "background": "#f7f9fb",
+                    "surface-bright": "#f7f9fb",
+                    "tertiary": "#00596e",
+                    "primary-container": "#0f766e",
+                    "surface-dim": "#d8dadc",
+                    "tertiary-fixed": "#b7eaff",
+                    "surface-container-highest": "#e0e3e5",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-primary-container": "#a3faef",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-container-low": "#f2f4f6",
+                    "inverse-surface": "#2d3133",
+                    "secondary-fixed": "#71f8e4",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#00738e",
+                    "on-primary-fixed-variant": "#00504a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container_margin_mobile": "16px",
+                    "xs": "4px",
+                    "grid_columns_desktop": "12",
+                    "container_margin_desktop": "40px",
+                    "xxl": "48px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "xl": "32px",
+                    "grid_gutter": "24px",
+                    "lg": "24px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f7f9fb; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .map-gradient-overlay {
+            background: linear-gradient(to bottom, transparent 60%, #f7f9fb 100%);
+        }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 0.4; }
+        }
+        .animate-pulse-soft { animation: pulse-soft 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl docked full-width top-0 sticky z-50 border-b border-outline-variant/30 shadow-sm flex justify-between items-center px-container_margin_mobile md:px-container_margin_desktop h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-surface-variant/50 transition-colors p-2 rounded-full Active:scale-95 duration-100">menu</button>
+<h1 class="text-title-lg font-title-lg font-bold text-primary dark:text-primary-fixed">CareConnect AI</h1>
+</div>
+<div class="flex items-center gap-2 md:gap-6">
+<nav class="hidden md:flex gap-4">
+<a class="text-on-surface-variant dark:text-outline font-label-md text-label-md hover:text-primary transition-colors" href="/prediction-results">Insights</a>
+<a class="text-primary dark:text-primary-fixed font-bold font-label-md text-label-md" href="/community-health">Community</a>
+<a class="text-on-surface-variant dark:text-outline font-label-md text-label-md hover:text-primary transition-colors" href="/health">Resources</a>
+</nav>
+<button class="bg-error text-on-error px-4 py-1.5 rounded-full font-label-md text-label-md font-bold shadow-sm hover:opacity-90 transition-all Active:scale-95 duration-100">SOS</button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-container_margin_mobile md:px-container_margin_desktop py-8 mb-24">
+<!-- Hero Section & Title -->
+<div class="mb-8">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-2">Community Health Intelligence</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Real-time disease surveillance and risk mapping powered by clinical AI data to keep your neighborhood informed and safe.</p>
+</div>
+<!-- Bento Grid Layout for Map and Insights -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-grid_gutter">
+<!-- Map Container (Large) -->
+<div class="lg:col-span-8 relative rounded-xl overflow-hidden shadow-sm border border-outline-variant/30 bg-surface-container-lowest min-h-[500px] md:min-h-[600px]">
+<div class="absolute inset-0 z-0">
+<!-- Image Placeholder for Map -->
+<img class="w-full h-full object-cover" data-alt="A high-contrast, modern satellite map of a metropolitan city area. The map is stylized with healthcare-specific data overlays including semi-transparent, color-coded heat zones in shades of emerald green, cautionary yellow, warning orange, and high-risk crimson red. The overall lighting is bright and clear, emphasizing readability for outdoor use with a clinical and precise aesthetic. The map features subtle glassmorphic labels and floating UI elements indicating specific medical facilities and outbreak centers." data-location="New York City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWINwV3jMRFiZRcJeE_5wuCrEzvjLhVwbcCEZwlJaPcU2v1O_-8HqbHmtRMSrkF5StvWUXejQYMKm92Ft2wSyYNNN_MwPgFajCdfGrCh4dLRWFJOjFoDWT7SU4C2OQ2C1yV1IwgoK7LiXLjUKqCoa7GJE4W4Zu3fW78ESqzcyUENi3QUeQSJugFM8xu5WOVhW2cFkNbdSNRyDXVXnbMFrESbMG-Jc8tdkvPxdCdpHw7t1-vUeJKMnZkQUojaUuYigbbItJprbmu4ah"/>
+<div class="absolute inset-0 bg-black/5 pointer-events-none"></div>
+</div>
+<!-- Map Overlay Elements -->
+<div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+<div class="glass-panel p-4 rounded-xl border border-white/40 shadow-lg">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">my_location</span>
+<span class="font-label-md text-label-md font-bold text-on-surface">Current Zone: Elevated</span>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-green-500"></div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Safe</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Watch</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-orange-500"></div>
+<span class="text-label-sm font-label-sm text-on-surface-variant font-bold">Elevated</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-red-600"></div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">High Risk</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Dynamic Markers -->
+<div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+<div class="relative group cursor-pointer">
+<div class="absolute -inset-4 bg-error/20 rounded-full animate-pulse-soft"></div>
+<div class="bg-surface p-2 rounded-lg border border-error shadow-xl flex items-center gap-2">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">coronavirus</span>
+<div class="pr-2">
+<p class="text-label-sm font-bold leading-none text-on-surface">Flu Cluster</p>
+<p class="text-[10px] text-on-surface-variant">12 cases reported</p>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-6 right-6 z-10 flex flex-col gap-2">
+<button class="w-12 h-12 bg-surface hover:bg-surface-variant transition-colors rounded-full shadow-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="w-12 h-12 bg-surface hover:bg-surface-variant transition-colors rounded-full shadow-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<button class="w-12 h-12 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center">
+<span class="material-symbols-outlined">near_me</span>
+</button>
+</div>
+</div>
+<!-- AI Insight Panel -->
+<div class="lg:col-span-4 flex flex-col gap-grid_gutter">
+<div class="p-6 rounded-xl border border-primary/20 bg-primary-container/10 glass-panel shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-primary text-6xl">auto_awesome</span>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">smart_toy</span>
+<h3 class="font-title-lg text-title-lg text-primary font-bold">AI Health Forecast</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                        An increase in respiratory symptoms has been detected within a 2-mile radius. We recommend wearing a mask in crowded indoor spaces for the next 48 hours.
+                    </p>
+<button class="w-full py-3 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-bold hover:shadow-md transition-all">View Prevention Plan</button>
+</div>
+<div class="p-6 rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm">
+<h3 class="font-label-md text-label-md font-bold text-on-surface-variant uppercase tracking-wider mb-4">Risk Distribution</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-label-md font-label-md text-on-surface">Influenza A</span>
+<span class="text-label-md font-label-md text-error font-bold">High</span>
+</div>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 85%;"></div>
+</div>
+<div class="flex justify-between items-center pt-2">
+<span class="text-label-md font-label-md text-on-surface">Common Cold</span>
+<span class="text-label-md font-label-md text-orange-500 font-bold">Elevated</span>
+</div>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-orange-500 rounded-full" style="width: 60%;"></div>
+</div>
+<div class="flex justify-between items-center pt-2">
+<span class="text-label-md font-label-md text-on-surface">Strep Throat</span>
+<span class="text-label-md font-label-md text-secondary font-bold">Low</span>
+</div>
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 15%;"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Nearby Community Alerts -->
+<section class="mt-12">
+<div class="flex justify-between items-end mb-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Nearby Community Alerts</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Active localized health trends within 5 miles.</p>
+</div>
+<button class="text-primary font-label-md text-label-md font-bold flex items-center gap-1 hover:underline">
+                    View All <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Alert Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl hover:shadow-lg transition-shadow duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 rounded-lg bg-error-container/50">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">medical_mask</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-error-container text-on-error-container text-label-sm font-label-sm font-bold">Critical Alert</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-on-surface font-bold mb-2">Flu Outbreak: Downtown</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Significant spike in reported Type-A influenza cases near the Central Business District.</p>
+<div class="flex items-center gap-4 border-t border-outline-variant pt-4">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a healthcare provider." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6E-J5la_Xata5YO3h_GvpI5Piuy4GahFVsmEYNvdJWgRo-Gm-WovFJREzuUy_UoZh0Gl_afpuMSGRZ_t-AOtUFtMrZQbk253RFc2yn_uf-Az7MxMcCo1gTht3XlUYxEpMkpuQk7cjjqvYAw67uQHuUNcVqP38vHCXUHJBRVpjUrtYvuv1zYD43L2-uvWTuZHV0fagZ1bs5xPKQ8MVeMi1JFrUT8UxrT0e3vDEaqym2vbQvOnWyApzIbhm_KnhDXESJN6DpMpxvaW5"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A headshot of a female doctor in a white coat." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEcE6tY5K5JpNCefwJ1Oc4_eTqE8aGnM4GpiPPpMlAAd8C8u254GzwM-eTz2L4Yau6KKPTHN1Zn70Dbcpm6cajynyIhRCuzFdZNe_7cyq3SVLrKm0qR3uDNRfde2RHq_PElo5CQIhjQGC0TI9Nrzq4saiW4zdiGpOsuqqLJd3TBOq4mxmTuesrVm2JOwksyiscFDDVbQRptOeUqUFraWkQsENA2hDVXG_QACP51jWvasEnJ_hFT4_vpcix5DtOPNZwUGOvQW-G29-x"/>
+</div>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Verified by 12 Clinicians</span>
+</div>
+</div>
+<!-- Alert Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl hover:shadow-lg transition-shadow duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 rounded-lg bg-tertiary-container/20">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">air</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-surface-variant text-on-surface-variant text-label-sm font-label-sm font-bold">Info Trend</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-on-surface font-bold mb-2">High Pollen Count</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Cedar pollen levels are exceptionally high today. Allergy sufferers should stay indoors.</p>
+<div class="flex items-center gap-2 border-t border-outline-variant pt-4">
+<span class="material-symbols-outlined text-tertiary text-[20px]">calendar_today</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Today, Oct 12 • 08:45 AM</span>
+</div>
+</div>
+<!-- Alert Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-6 rounded-xl hover:shadow-lg transition-shadow duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 rounded-lg bg-secondary-container/30">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">vaccines</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-label-sm font-label-sm font-bold">Prevention</span>
+</div>
+<h4 class="font-title-lg text-title-lg text-on-surface font-bold mb-2">Pop-up Clinic Nearby</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Free flu vaccinations available at Westside Community Center until 6:00 PM today.</p>
+<div class="flex items-center gap-2 border-t border-outline-variant pt-4 text-primary">
+<span class="material-symbols-outlined text-[20px]">location_on</span>
+<span class="text-label-sm font-label-sm font-bold">1.2 miles away</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface/90 dark:bg-surface-container-lowest/90 backdrop-blur-xl border-t border-outline-variant/20 shadow-[0_-4px_20px_rgba(15,23,42,0.05)] md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline group" href="/home">
+<span class="material-symbols-outlined group-active:scale-90 duration-200">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline group" href="/health">
+<span class="material-symbols-outlined group-active:scale-90 duration-200">monitor_heart</span>
+<span class="font-label-sm text-label-sm">Health</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline group" href="/assistant">
+<span class="material-symbols-outlined group-active:scale-90 duration-200">smart_toy</span>
+<span class="font-label-sm text-label-sm">Assistant</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed bg-secondary-container/30 dark:bg-secondary-container/10 rounded-full px-4 py-1 group" href="/community-health">
+<span class="material-symbols-outlined group-active:scale-90 duration-200" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="font-label-sm text-label-sm">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline group" href="/family">
+<span class="material-symbols-outlined group-active:scale-90 duration-200">group</span>
+<span class="font-label-sm text-label-sm">Family</span>
+</a>
+</nav>
+<script>
+        // Simple interactive demo logic
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.classList.add('scale-95');
+                setTimeout(() => el.classList.remove('scale-95'), 150);
+            });
+        });
+
+        // Simulating periodic data updates on map
+        setInterval(() => {
+            const markers = document.querySelectorAll('.animate-pulse-soft');
+            markers.forEach(m => {
+                m.style.opacity = Math.random() * 0.5 + 0.3;
+            });
+        }, 3000);
+    </script>
+</body></html>
