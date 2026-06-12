@@ -26,6 +26,27 @@ export default function ProfileScreen() {
         </View>
       </View>
 
+      {/* Clinical Profile Details */}
+      <SectionHeader title="Clinical Profile Details" />
+      <HealthCard title="Medical Records Info">
+        <View style={styles.medicalInfoRow}>
+          <View style={styles.medicalInfoCol}>
+            <Text style={styles.medLabel}>Gender</Text>
+            <Text style={styles.medVal}>{user?.gender || 'Male'}</Text>
+          </View>
+          <View style={styles.medicalInfoCol}>
+            <Text style={styles.medLabel}>Blood Group</Text>
+            <Text style={styles.medVal}>{user?.bloodGroup || 'O Positive (O+)'}</Text>
+          </View>
+        </View>
+        <View style={[styles.medicalInfoRow, { marginTop: 12 }]}>
+          <View style={styles.medicalInfoCol}>
+            <Text style={styles.medLabel}>Medical History / Allergies</Text>
+            <Text style={styles.medVal}>{user?.medicalHistory || 'Mild Hypertension, Penicillin Allergy'}</Text>
+          </View>
+        </View>
+      </HealthCard>
+
       {/* Emergency Contact Summary */}
       <SectionHeader title="Registered Emergency Contacts" />
       {user?.emergencyContacts.map((contact) => (
@@ -213,5 +234,23 @@ const styles = StyleSheet.create({
   },
   actionContainer: {
     marginTop: 24,
+  },
+  medicalInfoRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  medicalInfoCol: {
+    flex: 1,
+  },
+  medLabel: {
+    fontSize: 13,
+    color: colors.textSecondary,
+    fontWeight: '600',
+  },
+  medVal: {
+    fontSize: 15,
+    color: colors.text,
+    fontWeight: '700',
+    marginTop: 2,
   },
 });

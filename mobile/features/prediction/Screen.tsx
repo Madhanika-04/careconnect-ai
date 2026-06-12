@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Alert, Linking } from 'react-native';
 import { colors } from '../../theme/colors';
 import { radius } from '../../theme/radius';
 import { shadows } from '../../theme/shadows';
-import { AlertTriangle, Info, CheckCircle2, Droplets, Bedtime, Activity, Phone } from 'lucide-react-native';
+import { AlertTriangle, Info, CheckCircle2, Droplets, Moon, Activity, Phone } from 'lucide-react-native';
 
 export default function PredictionScreen() {
   return (
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
   },
   actionButtonText: {
     fontSize: 12,
-    fontWeight: '750',
+    fontWeight: '700',
     color: '#0F172A',
     textAlign: 'center',
   },
@@ -331,7 +331,7 @@ const styles = StyleSheet.create({
   },
   dangerTitle: {
     fontSize: 15,
-    fontWeight: '850',
+    fontWeight: '800',
     color: '#BE123C',
   },
   dangerDesc: {

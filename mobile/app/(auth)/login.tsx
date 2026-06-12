@@ -11,14 +11,29 @@ import { Heart } from 'lucide-react-native';
 export default function LoginScreen() {
   const { login, loading } = useAuthStore();
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    if (!email.trim()) {
-      Alert.alert('Required field', 'Please enter your email address to log in.');
+    if (!email.trim() || !password.trim()) {
+      Alert.alert('Required fields', 'Please enter both email and password.');
       return;
     }
-    await login(email);
-    router.replace('/(tabs)/home');
+    try {
+      await login(email, password);
+      router.replace('/(tabs)/home');
+    } catch (e: any) {
+      Alert.alert('Sign In Failed', e.message || 'Check your credentials.');
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    try {
+      // Mock Google Login dispatch - will fetch standard default profile
+      await login('google.user@healthmail.com', 'google_mock_pass');
+      router.replace('/(tabs)/home');
+    } catch (e: any) {
+      Alert.alert('Google Sign In Failed', e.message);
+    }
   };
 
   return (
@@ -52,10 +67,32 @@ export default function LoginScreen() {
             />
           </View>
 
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Password</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter your password"
+              placeholderTextColor={colors.textSecondary}
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry
+              autoCapitalize="none"
+            />
+          </View>
+
           <PrimaryButton
             title="LOG IN"
             loading={loading}
             onPress={handleLogin}
+          />
+
+          <View style={{ marginVertical: 8 }} />
+
+          <PrimaryButton
+            title="SIGN IN WITH GOOGLE"
+            mode="outlined"
+            color={colors.primary}
+            onPress={handleGoogleLogin}
           />
 
           <View style={styles.footer}>

@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
   },
   forecastTitle: {
     fontSize: 14,
-    fontWeight: '750',
+    fontWeight: '700',
     color: '#0F766E',
     marginLeft: 8,
   },
