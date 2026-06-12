@@ -137,7 +137,9 @@
 <!-- Top Navigation Bar -->
 <header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm docked full-width top-0 sticky z-50 flex justify-between items-center px-container_margin_mobile md:px-container_margin_desktop h-16 w-full">
 <div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-surface-variant/50 p-2 rounded-full transition-colors">menu</span>
+<a aria-label="Go back" class="p-2 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100" href="/home">
+    <span class="material-symbols-outlined text-primary">arrow_back</span>
+</a>
 <h1 class="text-title-lg font-title-lg font-bold text-primary">CareConnect AI</h1>
 </div>
 <div class="flex items-center gap-4">
@@ -169,8 +171,13 @@
 <div>
 <div class="flex items-start justify-between mb-4">
 <div class="flex items-center gap-4">
-<div class="w-16 h-16 rounded-full border-2 border-primary-fixed overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A serene portrait of a senior woman with silver hair smiling warmly in soft, natural sunlight. The image has a calm healthcare professional aesthetic with high-key lighting and a soft teal and white color palette, conveying comfort and reliability in a medical context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC94h69ejqw7MfGmGMVRGBpENp9VfE_zv7u71E9TkOGMCxLVtYRTjD9imDpBvfuogIDqLejgAYgz5mMA4hGm82dUcahArbaGVyfecZif5GAajjj3OfWvZonk6GAedkceCupziOcwf9Rs4RPLwdP7z2ZhewqeZzOMT8O2UshtnTecZBHvx9J8070NbNoHyUVU9dRRvqQXD07y3XQUTbbn7WvMLjToATYLu4lIv9kA5bLWoO5vyAJLbLbdq1Y9LR8LvcsHsLf9PiNKTdL"/>
+<div class="w-16 h-16 rounded-full border-2 border-primary-fixed overflow-hidden bg-teal-50">
+<svg viewBox="0 0 100 100" class="w-full h-full">
+  <path d="M50 25 C38 25 32 35 32 45 C32 55 38 60 50 60 C62 60 68 55 68 45 C68 35 62 25 50 25 Z" fill="#94a3b8"/>
+  <circle cx="50" cy="48" r="16" fill="#fbcfe8"/>
+  <path d="M34 40 C34 30 40 26 50 26 C60 26 66 30 66 40 C66 45 62 42 50 42 C38 42 34 45 34 40 Z" fill="#cbd5e1"/>
+  <path d="M25 80 C25 68 35 68 50 68 C65 68 75 68 75 80 Z" fill="#0f766e"/>
+</svg>
 </div>
 <div>
 <h3 class="font-headline-md text-headline-md text-on-surface">Mom</h3>
@@ -213,8 +220,12 @@
 <div>
 <div class="flex items-start justify-between mb-4">
 <div class="flex items-center gap-4">
-<div class="w-16 h-16 rounded-full border-2 border-primary-fixed overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A portrait of a mature man with a gentle expression and short grey hair, wearing a clean linen shirt. The background is a soft, out-of-focus garden, with bright, clinical lighting effects that feel modern and safe. The palette is dominated by soft teals, whites, and natural skin tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYJWggnx5NMZF3drZPLuyaENR-Ap-oRheQ9yWivwxmLipqT-H_DqrSxFBrxVRidjCwVkM2f3flJGOamP6_1KNABHn63qmwSVy27mldgCEQKMlYcDebesxD3zZLOxie4TgXjhrldlXqXERAlduoGZYyD4N_mRC8HDGkbPEu3KMYi-isT3GHTkSQyHQehmEpltXGUk8aCJNS8b6PXuZsfZSE1OzScqEnLiOuIBKt3iQijJpEPCwmyFxjo7hV_bNMmS6cwUoeAHKG6Nhp"/>
+<div class="w-16 h-16 rounded-full border-2 border-primary-fixed overflow-hidden bg-teal-50">
+<svg viewBox="0 0 100 100" class="w-full h-full">
+  <path d="M50 25 C40 25 35 32 35 42 C35 52 42 58 50 58 C58 58 65 52 65 42 C65 32 60 25 50 25 Z" fill="#475569"/>
+  <circle cx="50" cy="46" r="16" fill="#fed7aa"/>
+  <path d="M25 80 C25 68 35 66 50 66 C65 66 75 68 75 80 Z" fill="#0284c7"/>
+</svg>
 </div>
 <div>
 <h3 class="font-headline-md text-headline-md text-on-surface">Dad</h3>
@@ -257,8 +268,12 @@
 <div>
 <div class="flex items-start justify-between mb-4">
 <div class="flex items-center gap-4">
-<div class="w-16 h-16 rounded-full border-2 border-primary-fixed overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A portrait of a young boy with bright eyes and a cheerful smile, wearing a casual navy blue t-shirt. The lighting is soft and even, suggesting a safe indoor environment. The aesthetic is clean and modern, using the CareConnect AI teal accent colors for subtle highlights in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxPfv0yTqLvXLoxaP3lUQ285tygBmTGGscj-9D19NQr3nIjoqTmG6a0Sl8qttVwlDTMg8MlIL71VxLmB2gA_P0I8iTe6d2LIDPpB8JyrDRgXF0Q66gVUTBHFjgHAceYzg2rOgEhwpF_0VU3A7D011p6WSvKlrZCATWBiNff9Odj3zExtALg3uhZxy7Ul8fQQtxjkn6sqKnqXIVG9ZJuc8Ly29UbCaiL466zCQlno--d1UnnYMoqUiBwYhEF4vgRHhRner2EUN4CX6n"/>
+<div class="w-16 h-16 rounded-full border-2 border-primary-fixed overflow-hidden bg-teal-50">
+<svg viewBox="0 0 100 100" class="w-full h-full">
+  <path d="M50 22 C42 22 36 28 36 38 C36 48 42 54 50 54 C58 54 64 48 64 38 C64 28 58 22 50 22 Z" fill="#b45309"/>
+  <circle cx="50" cy="42" r="15" fill="#ffedd5"/>
+  <path d="M28 80 C28 68 38 68 50 68 C62 68 72 68 72 80 Z" fill="#1e3a8a"/>
+</svg>
 </div>
 <div>
 <h3 class="font-headline-md text-headline-md text-on-surface">Son</h3>
@@ -347,6 +362,19 @@
 <span class="font-label-sm text-label-sm">Alerts</span>
 </a>
 </nav>
+<!-- SOS Hold-to-Trigger Overlay -->
+<div id="sos-hold-overlay" class="fixed inset-0 bg-red-700/95 z-[9999] hidden flex-col items-center justify-center text-white select-none transition-all duration-300 opacity-0">
+    <div class="relative w-48 h-48 flex items-center justify-center">
+        <svg class="w-full h-full transform -rotate-90">
+            <circle cx="96" cy="96" r="80" stroke="rgba(255, 255, 255, 0.2)" stroke-width="12" fill="transparent" />
+            <circle id="sos-hold-progress-circle" cx="96" cy="96" r="80" stroke="#ff8a80" stroke-width="12" fill="transparent" stroke-dasharray="502.4" stroke-dashoffset="502.4" style="transition: stroke-dashoffset 0.1s linear;" />
+        </svg>
+        <span class="absolute text-4xl font-extrabold tracking-widest text-white">SOS</span>
+    </div>
+    <p class="text-2xl font-bold mt-6 tracking-wide">HOLDING FOR SOS</p>
+    <p class="text-sm opacity-80 mt-2 text-center max-w-xs px-4">Keep holding for 3 seconds to activate the emergency SOS center</p>
+</div>
+
 <!-- Micro-interaction Scripts -->
 <script>
         // Simple scale effect for interactive cards
@@ -363,5 +391,71 @@
             updateLabels[0].innerText = 'Last updated: 1 min ago';
             updateLabels[1].innerText = 'Last updated: Just now';
         }, 60000);
+
+        // Hold-to-trigger SOS Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('sos-hold-overlay');
+            const progressCircle = document.getElementById('sos-hold-progress-circle');
+            let holdTimer = null;
+            let progressInterval = null;
+            let holdDuration = 0;
+            const targetDuration = 3000;
+            const maxOffset = 502.4;
+
+            function startHold(e) {
+                e.preventDefault();
+                if (overlay.classList.contains('flex')) return;
+
+                overlay.classList.remove('hidden');
+                overlay.classList.add('flex');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+
+                holdDuration = 0;
+                progressCircle.style.strokeDashoffset = maxOffset;
+
+                progressInterval = setInterval(() => {
+                    holdDuration += 100;
+                    const progress = Math.min(holdDuration / targetDuration, 1);
+                    const offset = maxOffset - (progress * maxOffset);
+                    progressCircle.style.strokeDashoffset = offset;
+                }, 100);
+
+                holdTimer = setTimeout(() => {
+                    clearInterval(progressInterval);
+                    window.location.href = '/emergency-sos';
+                }, targetDuration);
+            }
+
+            function cancelHold() {
+                clearTimeout(holdTimer);
+                clearInterval(progressInterval);
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => {
+                    overlay.classList.remove('flex');
+                    overlay.classList.add('hidden');
+                }, 300);
+            }
+
+            // Find all SOS buttons
+            const sosButtons = Array.from(document.querySelectorAll('button, a, div')).filter(el => {
+                const text = el.textContent.trim().toUpperCase();
+                return text === 'SOS' || text === 'SOS HUB' || el.classList.contains('bg-error') || el.getAttribute('href') === '/emergency-sos';
+            });
+
+            sosButtons.forEach(btn => {
+                if (btn.tagName === 'A') {
+                    btn.removeAttribute('href');
+                    btn.style.cursor = 'pointer';
+                }
+                
+                btn.addEventListener('mousedown', startHold);
+                btn.addEventListener('touchstart', startHold);
+                
+                btn.addEventListener('mouseup', cancelHold);
+                btn.addEventListener('mouseleave', cancelHold);
+                btn.addEventListener('touchend', cancelHold);
+                btn.addEventListener('touchcancel', cancelHold);
+            });
+        });
     </script>
 </body></html>

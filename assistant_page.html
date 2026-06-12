@@ -149,9 +149,9 @@
     <!-- TopAppBar -->
     <header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm docked full-width top-0 sticky z-50 flex justify-between items-center px-container_margin_mobile md:px-container_margin_desktop h-16 w-full">
         <div class="flex items-center gap-4">
-            <button class="hover:bg-surface-variant/50 dark:hover:bg-surface-container-highest/50 transition-colors p-2 rounded-full active:scale-95 duration-100">
-                <span class="material-symbols-outlined text-primary dark:text-primary-fixed">menu</span>
-            </button>
+            <a aria-label="Go back" class="p-2 rounded-full hover:bg-surface-variant/50 dark:hover:bg-surface-container-highest/50 transition-colors active:scale-95 duration-100" href="/home">
+                <span class="material-symbols-outlined text-primary dark:text-primary-fixed">arrow_back</span>
+            </a>
             <h1 class="text-title-lg font-title-lg font-bold text-primary dark:text-primary-fixed">CareConnect AI</h1>
         </div>
         <div class="flex items-center gap-4">
@@ -263,15 +263,28 @@
             <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
             <span class="font-label-sm text-label-sm">Assistant</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="/alerts">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="/community-health">
             <span class="material-symbols-outlined">notifications</span>
             <span class="font-label-sm text-label-sm">Alerts</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="/profile">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors" href="/family">
             <span class="material-symbols-outlined">person</span>
             <span class="font-label-sm text-label-sm">Profile</span>
         </a>
     </nav>
+    <!-- SOS Hold-to-Trigger Overlay -->
+    <div id="sos-hold-overlay" class="fixed inset-0 bg-red-700/95 z-[9999] hidden flex-col items-center justify-center text-white select-none transition-all duration-300 opacity-0">
+        <div class="relative w-48 h-48 flex items-center justify-center">
+            <svg class="w-full h-full transform -rotate-90">
+                <circle cx="96" cy="96" r="80" stroke="rgba(255, 255, 255, 0.2)" stroke-width="12" fill="transparent" />
+                <circle id="sos-hold-progress-circle" cx="96" cy="96" r="80" stroke="#ff8a80" stroke-width="12" fill="transparent" stroke-dasharray="502.4" stroke-dashoffset="502.4" style="transition: stroke-dashoffset 0.1s linear;" />
+            </svg>
+            <span class="absolute text-4xl font-extrabold tracking-widest text-white">SOS</span>
+        </div>
+        <p class="text-2xl font-bold mt-6 tracking-wide">HOLDING FOR SOS</p>
+        <p class="text-sm opacity-80 mt-2 text-center max-w-xs px-4">Keep holding for 3 seconds to activate the emergency SOS center</p>
+    </div>
+
     <script>
         const chatContainer = document.getElementById('chat-container');
         const chatMessages = document.getElementById('chat-messages');
@@ -329,6 +342,72 @@
                 e.preventDefault();
                 handleSend();
             }
+        });
+
+        // Hold-to-trigger SOS Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('sos-hold-overlay');
+            const progressCircle = document.getElementById('sos-hold-progress-circle');
+            let holdTimer = null;
+            let progressInterval = null;
+            let holdDuration = 0;
+            const targetDuration = 3000;
+            const maxOffset = 502.4;
+
+            function startHold(e) {
+                e.preventDefault();
+                if (overlay.classList.contains('flex')) return;
+
+                overlay.classList.remove('hidden');
+                overlay.classList.add('flex');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+
+                holdDuration = 0;
+                progressCircle.style.strokeDashoffset = maxOffset;
+
+                progressInterval = setInterval(() => {
+                    holdDuration += 100;
+                    const progress = Math.min(holdDuration / targetDuration, 1);
+                    const offset = maxOffset - (progress * maxOffset);
+                    progressCircle.style.strokeDashoffset = offset;
+                }, 100);
+
+                holdTimer = setTimeout(() => {
+                    clearInterval(progressInterval);
+                    window.location.href = '/emergency-sos';
+                }, targetDuration);
+            }
+
+            function cancelHold() {
+                clearTimeout(holdTimer);
+                clearInterval(progressInterval);
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => {
+                    overlay.classList.remove('flex');
+                    overlay.classList.add('hidden');
+                }, 300);
+            }
+
+            // Find all SOS buttons
+            const sosButtons = Array.from(document.querySelectorAll('button, a, div')).filter(el => {
+                const text = el.textContent.trim().toUpperCase();
+                return text === 'SOS' || text === 'SOS HUB' || el.classList.contains('bg-error') || el.getAttribute('href') === '/emergency-sos';
+            });
+
+            sosButtons.forEach(btn => {
+                if (btn.tagName === 'A') {
+                    btn.removeAttribute('href');
+                    btn.style.cursor = 'pointer';
+                }
+                
+                btn.addEventListener('mousedown', startHold);
+                btn.addEventListener('touchstart', startHold);
+                
+                btn.addEventListener('mouseup', cancelHold);
+                btn.addEventListener('mouseleave', cancelHold);
+                btn.addEventListener('touchend', cancelHold);
+                btn.addEventListener('touchcancel', cancelHold);
+            });
         });
     </script>
 </body>

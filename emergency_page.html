@@ -227,7 +227,7 @@
     </main>
     <!-- Bottom Navigation Bar -->
     <nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface/90 backdrop-blur-xl border-t border-outline-variant/20 shadow-[0_-4px_20px_rgba(15,23,42,0.05)] md:hidden">
-        <a class="flex flex-col items-center justify-center text-on-surface-variant transition-colors hover:text-primary" href="/">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant transition-colors hover:text-primary" href="/home">
             <span class="material-symbols-outlined" data-icon="home">home</span>
             <span class="font-label-sm text-label-sm">Home</span>
         </a>
@@ -239,10 +239,78 @@
             <span class="material-symbols-outlined" data-icon="notifications_active" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
             <span class="font-label-sm text-label-sm">SOS</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant transition-colors hover:text-primary" href="/profile">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant transition-colors hover:text-primary" href="/family">
             <span class="material-symbols-outlined" data-icon="person">person</span>
             <span class="font-label-sm text-label-sm">Profile</span>
         </a>
     </nav>
+
+    <!-- Cancellation Hold Overlay -->
+    <div id="cancel-hold-overlay" class="fixed inset-0 bg-slate-900/95 z-[9999] hidden flex-col items-center justify-center text-white select-none transition-all duration-300 opacity-0">
+        <div class="relative w-48 h-48 flex items-center justify-center">
+            <svg class="w-full h-full transform -rotate-90">
+                <circle cx="96" cy="96" r="80" stroke="rgba(255, 255, 255, 0.2)" stroke-width="12" fill="transparent" />
+                <circle id="cancel-hold-progress-circle" cx="96" cy="96" r="80" stroke="#00b0ff" stroke-width="12" fill="transparent" stroke-dasharray="502.4" stroke-dashoffset="502.4" style="transition: stroke-dashoffset 0.1s linear;" />
+            </svg>
+            <span class="absolute text-xl font-extrabold tracking-wider text-center text-white">CANCEL</span>
+        </div>
+        <p class="text-2xl font-bold mt-6 tracking-wide">CANCELING SOS CALL</p>
+        <p class="text-sm opacity-80 mt-2 text-center max-w-xs px-4">Keep holding to cancel emergency alert and return home</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const trigger = document.getElementById('sos-main-trigger');
+            const overlay = document.getElementById('cancel-hold-overlay');
+            const progressCircle = document.getElementById('cancel-hold-progress-circle');
+            let holdTimer = null;
+            let progressInterval = null;
+            let holdDuration = 0;
+            const targetDuration = 3000;
+            const maxOffset = 502.4;
+
+            function startHold(e) {
+                e.preventDefault();
+                overlay.classList.remove('hidden');
+                overlay.classList.add('flex');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+
+                holdDuration = 0;
+                progressCircle.style.strokeDashoffset = maxOffset;
+
+                progressInterval = setInterval(() => {
+                    holdDuration += 100;
+                    const progress = Math.min(holdDuration / targetDuration, 1);
+                    const offset = maxOffset - (progress * maxOffset);
+                    progressCircle.style.strokeDashoffset = offset;
+                }, 100);
+
+                holdTimer = setTimeout(() => {
+                    clearInterval(progressInterval);
+                    window.location.href = '/home';
+                }, targetDuration);
+            }
+
+            function cancelHold() {
+                clearTimeout(holdTimer);
+                clearInterval(progressInterval);
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => {
+                    overlay.classList.remove('flex');
+                    overlay.classList.add('hidden');
+                }, 300);
+            }
+
+            if (trigger) {
+                trigger.addEventListener('mousedown', startHold);
+                trigger.addEventListener('touchstart', startHold);
+                
+                trigger.addEventListener('mouseup', cancelHold);
+                trigger.addEventListener('mouseleave', cancelHold);
+                trigger.addEventListener('touchend', cancelHold);
+                trigger.addEventListener('touchcancel', cancelHold);
+            }
+        });
+    </script>
 </body>
 </html>

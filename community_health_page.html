@@ -134,7 +134,9 @@
 <!-- TopAppBar -->
 <header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl docked full-width top-0 sticky z-50 border-b border-outline-variant/30 shadow-sm flex justify-between items-center px-container_margin_mobile md:px-container_margin_desktop h-16 w-full">
 <div class="flex items-center gap-4">
-<button class="material-symbols-outlined text-primary hover:bg-surface-variant/50 transition-colors p-2 rounded-full Active:scale-95 duration-100">menu</button>
+<a aria-label="Go back" class="p-2 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100" href="/home">
+    <span class="material-symbols-outlined text-primary">arrow_back</span>
+</a>
 <h1 class="text-title-lg font-title-lg font-bold text-primary dark:text-primary-fixed">CareConnect AI</h1>
 </div>
 <div class="flex items-center gap-2 md:gap-6">
@@ -158,7 +160,14 @@
 <div class="lg:col-span-8 relative rounded-xl overflow-hidden shadow-sm border border-outline-variant/30 bg-surface-container-lowest min-h-[500px] md:min-h-[600px]">
 <div class="absolute inset-0 z-0">
 <!-- Image Placeholder for Map -->
-<img class="w-full h-full object-cover" data-alt="A high-contrast, modern satellite map of a metropolitan city area. The map is stylized with healthcare-specific data overlays including semi-transparent, color-coded heat zones in shades of emerald green, cautionary yellow, warning orange, and high-risk crimson red. The overall lighting is bright and clear, emphasizing readability for outdoor use with a clinical and precise aesthetic. The map features subtle glassmorphic labels and floating UI elements indicating specific medical facilities and outbreak centers." data-location="New York City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWINwV3jMRFiZRcJeE_5wuCrEzvjLhVwbcCEZwlJaPcU2v1O_-8HqbHmtRMSrkF5StvWUXejQYMKm92Ft2wSyYNNN_MwPgFajCdfGrCh4dLRWFJOjFoDWT7SU4C2OQ2C1yV1IwgoK7LiXLjUKqCoa7GJE4W4Zu3fW78ESqzcyUENi3QUeQSJugFM8xu5WOVhW2cFkNbdSNRyDXVXnbMFrESbMG-Jc8tdkvPxdCdpHw7t1-vUeJKMnZkQUojaUuYigbbItJprbmu4ah"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" class="w-full h-full object-cover bg-slate-900">
+    <path d="M0 50h400M0 100h400M0 150h400M0 200h400M0 250h400M50 0v300M100 0v300M150 0v300M200 0v300M250 0v300M300 0v300M350 0v300" stroke="#1e293b" stroke-width="1"/>
+    <path d="M-50 50 L450 300 M50 -50 L450 250 M-50 200 L300 -50" stroke="#334155" stroke-width="2"/>
+    <circle cx="150" cy="120" r="50" fill="rgba(239, 68, 68, 0.4)" filter="blur(10px)"/>
+    <circle cx="280" cy="180" r="40" fill="rgba(245, 158, 11, 0.3)" filter="blur(8px)"/>
+    <circle cx="80" cy="220" r="60" fill="rgba(16, 185, 129, 0.2)" filter="blur(12px)"/>
+    <circle cx="300" cy="80" r="30" fill="rgba(239, 68, 68, 0.3)" filter="blur(6px)"/>
+</svg>
 <div class="absolute inset-0 bg-black/5 pointer-events-none"></div>
 </div>
 <!-- Map Overlay Elements -->
@@ -280,11 +289,17 @@
 <p class="font-body-md text-body-md text-on-surface-variant mb-4">Significant spike in reported Type-A influenza cases near the Central Business District.</p>
 <div class="flex items-center gap-4 border-t border-outline-variant pt-4">
 <div class="flex -space-x-2">
-<div class="w-8 h-8 rounded-full border-2 border-surface overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of a healthcare provider." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6E-J5la_Xata5YO3h_GvpI5Piuy4GahFVsmEYNvdJWgRo-Gm-WovFJREzuUy_UoZh0Gl_afpuMSGRZ_t-AOtUFtMrZQbk253RFc2yn_uf-Az7MxMcCo1gTht3XlUYxEpMkpuQk7cjjqvYAw67uQHuUNcVqP38vHCXUHJBRVpjUrtYvuv1zYD43L2-uvWTuZHV0fagZ1bs5xPKQ8MVeMi1JFrUT8UxrT0e3vDEaqym2vbQvOnWyApzIbhm_KnhDXESJN6DpMpxvaW5"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface overflow-hidden bg-teal-100 flex items-center justify-center">
+    <svg viewBox="0 0 100 100" class="w-full h-full text-primary">
+        <circle cx="50" cy="35" r="20" fill="currentColor" />
+        <path d="M10 85 C10 60 30 60 50 60 C70 60 90 60 90 85 Z" fill="currentColor" />
+    </svg>
 </div>
-<div class="w-8 h-8 rounded-full border-2 border-surface overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A headshot of a female doctor in a white coat." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEcE6tY5K5JpNCefwJ1Oc4_eTqE8aGnM4GpiPPpMlAAd8C8u254GzwM-eTz2L4Yau6KKPTHN1Zn70Dbcpm6cajynyIhRCuzFdZNe_7cyq3SVLrKm0qR3uDNRfde2RHq_PElo5CQIhjQGC0TI9Nrzq4saiW4zdiGpOsuqqLJd3TBOq4mxmTuesrVm2JOwksyiscFDDVbQRptOeUqUFraWkQsENA2hDVXG_QACP51jWvasEnJ_hFT4_vpcix5DtOPNZwUGOvQW-G29-x"/>
+<div class="w-8 h-8 rounded-full border-2 border-surface overflow-hidden bg-secondary-container flex items-center justify-center">
+    <svg viewBox="0 0 100 100" class="w-full h-full text-secondary">
+        <circle cx="50" cy="35" r="20" fill="currentColor" />
+        <path d="M10 85 C10 60 30 60 50 60 C70 60 90 60 90 85 Z" fill="currentColor" />
+    </svg>
 </div>
 </div>
 <span class="text-label-sm font-label-sm text-on-surface-variant">Verified by 12 Clinicians</span>
@@ -346,7 +361,20 @@
 <span class="font-label-sm text-label-sm">Family</span>
 </a>
 </nav>
-<script>
+    <!-- SOS Hold-to-Trigger Overlay -->
+    <div id="sos-hold-overlay" class="fixed inset-0 bg-red-700/95 z-[9999] hidden flex-col items-center justify-center text-white select-none transition-all duration-300 opacity-0">
+        <div class="relative w-48 h-48 flex items-center justify-center">
+            <svg class="w-full h-full transform -rotate-90">
+                <circle cx="96" cy="96" r="80" stroke="rgba(255, 255, 255, 0.2)" stroke-width="12" fill="transparent" />
+                <circle id="sos-hold-progress-circle" cx="96" cy="96" r="80" stroke="#ff8a80" stroke-width="12" fill="transparent" stroke-dasharray="502.4" stroke-dashoffset="502.4" style="transition: stroke-dashoffset 0.1s linear;" />
+            </svg>
+            <span class="absolute text-4xl font-extrabold tracking-widest text-white">SOS</span>
+        </div>
+        <p class="text-2xl font-bold mt-6 tracking-wide">HOLDING FOR SOS</p>
+        <p class="text-sm opacity-80 mt-2 text-center max-w-xs px-4">Keep holding for 3 seconds to activate the emergency SOS center</p>
+    </div>
+
+    <script>
         // Simple interactive demo logic
         document.querySelectorAll('a, button').forEach(el => {
             el.addEventListener('mousedown', () => {
@@ -362,5 +390,71 @@
                 m.style.opacity = Math.random() * 0.5 + 0.3;
             });
         }, 3000);
+
+        // Hold-to-trigger SOS Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('sos-hold-overlay');
+            const progressCircle = document.getElementById('sos-hold-progress-circle');
+            let holdTimer = null;
+            let progressInterval = null;
+            let holdDuration = 0;
+            const targetDuration = 3000;
+            const maxOffset = 502.4;
+
+            function startHold(e) {
+                e.preventDefault();
+                if (overlay.classList.contains('flex')) return;
+
+                overlay.classList.remove('hidden');
+                overlay.classList.add('flex');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+
+                holdDuration = 0;
+                progressCircle.style.strokeDashoffset = maxOffset;
+
+                progressInterval = setInterval(() => {
+                    holdDuration += 100;
+                    const progress = Math.min(holdDuration / targetDuration, 1);
+                    const offset = maxOffset - (progress * maxOffset);
+                    progressCircle.style.strokeDashoffset = offset;
+                }, 100);
+
+                holdTimer = setTimeout(() => {
+                    clearInterval(progressInterval);
+                    window.location.href = '/emergency-sos';
+                }, targetDuration);
+            }
+
+            function cancelHold() {
+                clearTimeout(holdTimer);
+                clearInterval(progressInterval);
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => {
+                    overlay.classList.remove('flex');
+                    overlay.classList.add('hidden');
+                }, 300);
+            }
+
+            // Find all SOS buttons
+            const sosButtons = Array.from(document.querySelectorAll('button, a, div')).filter(el => {
+                const text = el.textContent.trim().toUpperCase();
+                return text === 'SOS' || text === 'SOS HUB' || el.classList.contains('bg-error') || el.getAttribute('href') === '/emergency-sos';
+            });
+
+            sosButtons.forEach(btn => {
+                if (btn.tagName === 'A') {
+                    btn.removeAttribute('href');
+                    btn.style.cursor = 'pointer';
+                }
+                
+                btn.addEventListener('mousedown', startHold);
+                btn.addEventListener('touchstart', startHold);
+                
+                btn.addEventListener('mouseup', cancelHold);
+                btn.addEventListener('mouseleave', cancelHold);
+                btn.addEventListener('touchend', cancelHold);
+                btn.addEventListener('touchcancel', cancelHold);
+            });
+        });
     </script>
 </body></html>

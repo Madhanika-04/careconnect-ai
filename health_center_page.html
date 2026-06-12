@@ -141,8 +141,10 @@
 <body class="min-h-screen pb-24 md:pb-0">
 <!-- TopAppBar -->
 <header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm docked full-width top-0 sticky z-50 flex justify-between items-center px-container_margin_mobile md:px-container_margin_desktop h-16 w-full">
-<div class="flex items-center gap-4">
-<button class="material-symbols-outlined text-primary hover:bg-surface-variant/50 p-2 rounded-full transition-colors active:scale-95 duration-100">menu</button>
+<div class="flex items-center gap-3">
+<a aria-label="Go back" class="p-2 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100" href="/home">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</a>
 <h1 class="text-title-lg font-title-lg font-bold text-primary">CareConnect AI</h1>
 </div>
 <div class="hidden md:flex items-center gap-8">
@@ -310,7 +312,10 @@
 <p class="text-on-surface-variant font-label-sm text-label-sm">Heatmap analysis of Sector A-D</p>
 </div>
 <div class="relative flex-1 min-h-[220px]">
-<img alt="City Heatmap" class="w-full h-full object-cover grayscale opacity-50" data-alt="A sophisticated digital map of a modern city showing stylized urban planning blocks and streets. Overlaid on the map are translucent crimson and amber heatmap blobs indicating density and high-risk zones. The aesthetic is clean, clinical, and data-driven, using a light mode palette of whites and soft grays with vibrant medical data overlays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-qtE1BFhQGrRhCiV0IzDjHHIgSUYJR3amPqPgv4cWOg_LcCAaRML_V2PGzldV0dn0lwnO6p27IJ05YOvF0VfDYbnRfoPOeLlfxBkFo4lZ1ge5QV9JeSrDex7BkuD71SbDiq9p4XN4c3sqsw5oxF1i_5VC5s7QtxNW-Xby7aGDBOLdF-Kjm9royVo0Y6GeSJHbU4X5mLcaHiri82NjYDRpPKNocRsNWpLSiFr6eTrFoReRewlTOfEA8rTzb72rgGD7W1XM12_KXhuN"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" class="w-full h-full object-cover bg-slate-100 opacity-60">
+    <path d="M0 50h400M0 100h400M0 150h400M0 200h400M0 250h400M50 0v300M100 0v300M150 0v300M200 0v300M250 0v300M300 0v300M350 0v300" stroke="#cbd5e1" stroke-width="1"/>
+    <path d="M-50 50 L450 300 M50 -50 L450 250 M-50 200 L300 -50" stroke="#94a3b8" stroke-width="2"/>
+</svg>
 <div class="absolute inset-0 heatmap-overlay"></div>
 <div class="absolute top-4 right-4 flex flex-col gap-2">
 <button class="bg-surface/90 backdrop-blur p-1.5 rounded shadow text-primary material-symbols-outlined">zoom_in</button>
@@ -384,7 +389,20 @@
 <span class="font-label-sm text-label-sm">Profile</span>
 </a>
 </nav>
-<script>
+    <!-- SOS Hold-to-Trigger Overlay -->
+    <div id="sos-hold-overlay" class="fixed inset-0 bg-red-700/95 z-[9999] hidden flex-col items-center justify-center text-white select-none transition-all duration-300 opacity-0">
+        <div class="relative w-48 h-48 flex items-center justify-center">
+            <svg class="w-full h-full transform -rotate-90">
+                <circle cx="96" cy="96" r="80" stroke="rgba(255, 255, 255, 0.2)" stroke-width="12" fill="transparent" />
+                <circle id="sos-hold-progress-circle" cx="96" cy="96" r="80" stroke="#ff8a80" stroke-width="12" fill="transparent" stroke-dasharray="502.4" stroke-dashoffset="502.4" style="transition: stroke-dashoffset 0.1s linear;" />
+            </svg>
+            <span class="absolute text-4xl font-extrabold tracking-widest text-white">SOS</span>
+        </div>
+        <p class="text-2xl font-bold mt-6 tracking-wide">HOLDING FOR SOS</p>
+        <p class="text-sm opacity-80 mt-2 text-center max-w-xs px-4">Keep holding for 3 seconds to activate the emergency SOS center</p>
+    </div>
+
+    <script>
         // Simple interaction for bar chart hover states
         document.querySelectorAll('.group').forEach(bar => {
             bar.addEventListener('mouseenter', () => {
@@ -403,6 +421,72 @@
             } else {
                 header.classList.remove('shadow-md');
             }
+        });
+
+        // Hold-to-trigger SOS Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('sos-hold-overlay');
+            const progressCircle = document.getElementById('sos-hold-progress-circle');
+            let holdTimer = null;
+            let progressInterval = null;
+            let holdDuration = 0;
+            const targetDuration = 3000;
+            const maxOffset = 502.4;
+
+            function startHold(e) {
+                e.preventDefault();
+                if (overlay.classList.contains('flex')) return;
+
+                overlay.classList.remove('hidden');
+                overlay.classList.add('flex');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+
+                holdDuration = 0;
+                progressCircle.style.strokeDashoffset = maxOffset;
+
+                progressInterval = setInterval(() => {
+                    holdDuration += 100;
+                    const progress = Math.min(holdDuration / targetDuration, 1);
+                    const offset = maxOffset - (progress * maxOffset);
+                    progressCircle.style.strokeDashoffset = offset;
+                }, 100);
+
+                holdTimer = setTimeout(() => {
+                    clearInterval(progressInterval);
+                    window.location.href = '/emergency-sos';
+                }, targetDuration);
+            }
+
+            function cancelHold() {
+                clearTimeout(holdTimer);
+                clearInterval(progressInterval);
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => {
+                    overlay.classList.remove('flex');
+                    overlay.classList.add('hidden');
+                }, 300);
+            }
+
+            // Find all SOS buttons
+            const sosButtons = Array.from(document.querySelectorAll('button, a, div')).filter(el => {
+                const text = el.textContent.trim().toUpperCase();
+                return text === 'SOS' || text === 'SOS HUB' || el.classList.contains('bg-error') || el.getAttribute('href') === '/emergency-sos';
+            });
+
+            sosButtons.forEach(btn => {
+                if (btn.tagName === 'A') {
+                    btn.removeAttribute('href');
+                    btn.style.cursor = 'pointer';
+                }
+                
+                btn.addEventListener('mousedown', startHold);
+                btn.addEventListener('touchstart', startHold);
+                
+                btn.addEventListener('mouseup', cancelHold);
+                btn.addEventListener('mouseleave', cancelHold);
+                btn.addEventListener('touchend', cancelHold);
+                btn.addEventListener('touchcancel', cancelHold);
+            });
         });
     </script>
 </body></html>

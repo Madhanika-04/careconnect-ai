@@ -257,8 +257,24 @@
             <!-- Health History / AI Insights (Additional Section) -->
             <div class="md:col-span-12">
                 <div class="bg-surface-container-low rounded-2xl p-lg border border-outline-variant/20 flex flex-col md:flex-row gap-lg items-center">
-                    <div class="w-full md:w-1/3 h-48 rounded-xl overflow-hidden relative">
-                        <img class="w-full h-full object-cover" alt="Weekly Activity Trend" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZl-jqRuCwnxtb_FInOEaoZIA0sGVPt7nkGdYhG4riVhRsScaWSPp9sNV3VvTa6yZCeFwXG6-C8VVlLZzolzzNG5dIGCVyzwd4tkUqM8Oxt7vp86gkRUU6ehz4OXLf1gkBWAYEAAy-MY-hUkfjjU1qYAi1yhnBINYS37FZZUIitrtIqmreETPEef70PrKXUQA0l2x8BpOubcQPDYmSZ_wEvxDNUabXApU6fosADcn36s5neFTqh36k6o3od-i76EjZYDVBr_dXydKa"/>
+                    <div class="w-full md:w-1/3 h-48 rounded-xl overflow-hidden relative bg-slate-950">
+                        <svg viewBox="0 0 300 150" class="w-full h-full">
+                            <defs>
+                                <linearGradient id="chart-grad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#0f766e" stop-opacity="0.4"/>
+                                    <stop offset="100%" stop-color="#0f766e" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+                            <line x1="0" y1="30" x2="300" y2="30" stroke="#1e293b" stroke-dasharray="4"/>
+                            <line x1="0" y1="75" x2="300" y2="75" stroke="#1e293b" stroke-dasharray="4"/>
+                            <line x1="0" y1="120" x2="300" y2="120" stroke="#1e293b" stroke-dasharray="4"/>
+                            <path d="M0 150 L0 110 Q40 80 80 95 T160 50 T240 70 T300 35 L300 150 Z" fill="url(#chart-grad)"/>
+                            <path d="M0 110 Q40 80 80 95 T160 50 T240 70 T300 35" fill="none" stroke="#0f766e" stroke-width="3"/>
+                            <circle cx="80" cy="95" r="4" fill="#14b8a6"/>
+                            <circle cx="160" cy="50" r="4" fill="#14b8a6"/>
+                            <circle cx="240" cy="70" r="4" fill="#14b8a6"/>
+                            <circle cx="300" cy="35" r="4" fill="#14b8a6"/>
+                        </svg>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
                             <p class="text-white text-label-md font-label-md">Weekly Activity Trend</p>
                         </div>
@@ -276,47 +292,61 @@
     </main>
     <!-- BottomNavBar (Mobile Only Responsive Control) -->
     <nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface/90 dark:bg-surface-container-lowest/90 backdrop-blur-xl border-t border-outline-variant/20 shadow-[0_-4px_20px_rgba(15,23,42,0.05)] rounded-t-xl">
-        <a class="flex flex-col items-center justify-center text-primary bg-secondary-container/30 rounded-full px-4 py-1 active:scale-90 duration-200" href="#">
+        <a class="flex flex-col items-center justify-center text-primary bg-secondary-container/30 rounded-full px-4 py-1 active:scale-90 duration-200" href="/home">
             <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
             <span class="font-label-sm text-label-sm">Home</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 duration-200" href="#">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 duration-200" href="/health">
             <span class="material-symbols-outlined">monitor_heart</span>
             <span class="font-label-sm text-label-sm">Health</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 duration-200" href="#">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 duration-200" href="/assistant">
             <span class="material-symbols-outlined">smart_toy</span>
             <span class="font-label-sm text-label-sm">Assistant</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 duration-200" href="#">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 duration-200" href="/community-health">
             <span class="material-symbols-outlined">notifications</span>
             <span class="font-label-sm text-label-sm">Alerts</span>
         </a>
-        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 duration-200" href="#">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 duration-200" href="/family">
             <span class="material-symbols-outlined">person</span>
             <span class="font-label-sm text-label-sm">Profile</span>
         </a>
     </nav>
     <!-- Desktop Navigation Side Rail (Optional addition for full UX) -->
     <div class="hidden md:flex fixed left-0 top-16 bottom-0 w-20 flex-col items-center py-8 gap-8 bg-surface border-r border-outline-variant/20">
-        <a class="p-3 bg-secondary-container/30 text-primary rounded-2xl" href="#">
+        <a class="p-3 bg-secondary-container/30 text-primary rounded-2xl" href="/home">
             <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
         </a>
-        <a class="p-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-2xl transition-colors" href="#">
+        <a class="p-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-2xl transition-colors" href="/health">
             <span class="material-symbols-outlined">monitor_heart</span>
         </a>
-        <a class="p-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-2xl transition-colors" href="#">
+        <a class="p-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-2xl transition-colors" href="/assistant">
             <span class="material-symbols-outlined">smart_toy</span>
         </a>
-        <a class="p-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-2xl transition-colors" href="#">
+        <a class="p-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-2xl transition-colors" href="/community-health">
             <span class="material-symbols-outlined">notifications</span>
         </a>
         <div class="mt-auto">
-            <a class="p-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-2xl transition-colors" href="#">
+            <a class="p-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-2xl transition-colors" href="/family">
                 <span class="material-symbols-outlined">person</span>
             </a>
         </div>
     </div>
+
+    <!-- SOS Hold-to-Trigger Overlay -->
+    <div id="sos-hold-overlay" class="fixed inset-0 bg-red-700/95 z-[9999] hidden flex-col items-center justify-center text-white select-none transition-all duration-300 opacity-0">
+        <div class="relative w-48 h-48 flex items-center justify-center">
+            <svg class="w-full h-full transform -rotate-90">
+                <circle cx="96" cy="96" r="80" stroke="rgba(255, 255, 255, 0.2)" stroke-width="12" fill="transparent" />
+                <circle id="sos-hold-progress-circle" cx="96" cy="96" r="80" stroke="#ff8a80" stroke-width="12" fill="transparent" stroke-dasharray="502.4" stroke-dashoffset="502.4" style="transition: stroke-dashoffset 0.1s linear;" />
+            </svg>
+            <span class="absolute text-4xl font-extrabold tracking-widest text-white">SOS</span>
+        </div>
+        <p class="text-2xl font-bold mt-6 tracking-wide">HOLDING FOR SOS</p>
+        <p class="text-sm opacity-80 mt-2 text-center max-w-xs px-4">Keep holding for 3 seconds to activate the emergency SOS center</p>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const circle = document.querySelector('circle.text-secondary');
@@ -326,7 +356,74 @@
                     circle.style.strokeDashoffset = '82.9';
                 }, 100);
             }
+
+            // Hold-to-trigger SOS Logic
+            const overlay = document.getElementById('sos-hold-overlay');
+            const progressCircle = document.getElementById('sos-hold-progress-circle');
+            let holdTimer = null;
+            let progressInterval = null;
+            let holdDuration = 0;
+            const targetDuration = 3000;
+            const maxOffset = 502.4;
+
+            function startHold(e) {
+                e.preventDefault();
+                if (overlay.classList.contains('flex')) return;
+
+                overlay.classList.remove('hidden');
+                overlay.classList.add('flex');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+
+                holdDuration = 0;
+                progressCircle.style.strokeDashoffset = maxOffset;
+
+                progressInterval = setInterval(() => {
+                    holdDuration += 100;
+                    const progress = Math.min(holdDuration / targetDuration, 1);
+                    const offset = maxOffset - (progress * maxOffset);
+                    progressCircle.style.strokeDashoffset = offset;
+                }, 100);
+
+                holdTimer = setTimeout(() => {
+                    clearInterval(progressInterval);
+                    window.location.href = '/emergency-sos';
+                }, targetDuration);
+            }
+
+            function cancelHold() {
+                clearTimeout(holdTimer);
+                clearInterval(progressInterval);
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => {
+                    overlay.classList.remove('flex');
+                    overlay.classList.add('hidden');
+                }, 300);
+            }
+
+            // Find all SOS buttons
+            const sosButtons = Array.from(document.querySelectorAll('button, a, div')).filter(el => {
+                const text = el.textContent.trim().toUpperCase();
+                return text === 'SOS' || text === 'SOS HUB' || el.classList.contains('bg-error') || el.getAttribute('href') === '/emergency-sos';
+            });
+
+            sosButtons.forEach(btn => {
+                // Prevent standard click/navigation
+                if (btn.tagName === 'A') {
+                    btn.removeAttribute('href');
+                    btn.style.cursor = 'pointer';
+                }
+                
+                btn.addEventListener('mousedown', startHold);
+                btn.addEventListener('touchstart', startHold);
+                
+                btn.addEventListener('mouseup', cancelHold);
+                btn.addEventListener('mouseleave', cancelHold);
+                btn.addEventListener('touchend', cancelHold);
+                btn.addEventListener('touchcancel', cancelHold);
+            });
         });
     </script>
+</body>
+</html>
 </body>
 </html>
