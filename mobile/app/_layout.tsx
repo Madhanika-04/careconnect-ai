@@ -31,6 +31,33 @@ export default function RootLayout() {
             headerShown: true,
           }}
         />
+        <Stack.Screen
+          name="family"
+          options={{
+            title: 'Family Monitoring',
+            headerStyle: { backgroundColor: colors.primary },
+            headerTintColor: '#FFFFFF',
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="prediction"
+          options={{
+            title: 'Risk Assessment Details',
+            headerStyle: { backgroundColor: colors.primary },
+            headerTintColor: '#FFFFFF',
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="health-center"
+          options={{
+            title: 'Health Center Dashboard',
+            headerStyle: { backgroundColor: colors.primary },
+            headerTintColor: '#FFFFFF',
+            headerShown: true,
+          }}
+        />
       </Stack>
     </PaperProvider>
   );
