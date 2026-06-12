@@ -8,6 +8,7 @@ const ASSISTANT_HTML = path.join(__dirname, '..', 'assistant_page.html');
 const HEALTH_HTML = path.join(__dirname, '..', 'health_page.html');
 const EMERGENCY_HTML = path.join(__dirname, '..', 'emergency_page.html');
 const PREDICTION_HTML = path.join(__dirname, '..', 'prediction_page.html');
+const FAMILY_HTML = path.join(__dirname, '..', 'family_page.html');
 
 const server = http.createServer((req, res) => {
   if (req.url === '/assistant') {
@@ -25,6 +26,16 @@ const server = http.createServer((req, res) => {
       if (err) {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end('Error loading health page');
+      } else {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(data);
+      }
+    });
+  } else if (req.url === '/family' || req.url === '/family-monitoring') {
+    fs.readFile(FAMILY_HTML, (err, data) => {
+      if (err) {
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end('Error loading family page');
       } else {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.end(data);
