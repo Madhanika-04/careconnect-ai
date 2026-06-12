@@ -5,6 +5,7 @@ const path = require('path');
 const PORT = 8081;
 const HOME_HTML = path.join(__dirname, '..', 'landing_page.html');
 const ASSISTANT_HTML = path.join(__dirname, '..', 'assistant_page.html');
+const HEALTH_HTML = path.join(__dirname, '..', 'health_page.html');
 
 const server = http.createServer((req, res) => {
   if (req.url === '/assistant') {
@@ -17,7 +18,17 @@ const server = http.createServer((req, res) => {
         res.end(data);
       }
     });
-  } else if (req.url === '/' || req.url === '/home' || req.url === '/profile' || req.url === '/health' || req.url === '/alerts') {
+  } else if (req.url === '/health') {
+    fs.readFile(HEALTH_HTML, (err, data) => {
+      if (err) {
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end('Error loading health page');
+      } else {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.end(data);
+      }
+    });
+  } else if (req.url === '/' || req.url === '/home' || req.url === '/profile' || req.url === '/alerts') {
     fs.readFile(HOME_HTML, (err, data) => {
       if (err) {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
