@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+    <title>Emergency SOS Center | CareConnect AI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#006b5f",
+                    "on-background": "#191c1e",
+                    "on-tertiary-container": "#ccf0ff",
+                    "tertiary-fixed-dim": "#6cd3f7",
+                    "on-tertiary-fixed-variant": "#004e61",
+                    "surface-variant": "#e0e3e5",
+                    "primary-fixed-dim": "#80d5cb",
+                    "surface": "#f7f9fb",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#006f64",
+                    "surface-tint": "#006a63",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#001f28",
+                    "on-secondary": "#ffffff",
+                    "outline-variant": "#bdc9c6",
+                    "primary-fixed": "#9cf2e8",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#4fdbc8",
+                    "secondary-container": "#6df5e1",
+                    "on-surface-variant": "#3e4947",
+                    "on-secondary-fixed-variant": "#005048",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eceef0",
+                    "on-secondary-fixed": "#00201c",
+                    "outline": "#6e7977",
+                    "inverse-primary": "#80d5cb",
+                    "primary": "#005c55",
+                    "on-primary-fixed": "#00201d",
+                    "on-surface": "#191c1e",
+                    "background": "#f7f9fb",
+                    "surface-bright": "#f7f9fb",
+                    "tertiary": "#00596e",
+                    "primary-container": "#0f766e",
+                    "surface-dim": "#d8dadc",
+                    "tertiary-fixed": "#b7eaff",
+                    "surface-container-highest": "#e0e3e5",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-primary-container": "#a3faef",
+                    "surface-container-high": "#e6e8ea",
+                    "surface-container-low": "#f2f4f6",
+                    "inverse-surface": "#2d3133",
+                    "secondary-fixed": "#71f8e4",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#00738e",
+                    "on-primary-fixed-variant": "#00504a",
+                    "emergency-red": "#B91C1C"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container_margin_mobile": "16px",
+                    "xs": "4px",
+                    "grid_columns_desktop": "12",
+                    "container_margin_desktop": "40px",
+                    "xxl": "48px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "xl": "32px",
+                    "grid_gutter": "24px",
+                    "lg": "24px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .emergency-pulse {
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(185, 28, 28, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 40px rgba(185, 28, 28, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(185, 28, 28, 0); }
+        }
+        .sos-ripple {
+            position: absolute;
+            border: 4px solid #B91C1C;
+            border-radius: 50%;
+            animation: ripple-effect 3s linear infinite;
+            opacity: 0;
+        }
+        @keyframes ripple-effect {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(2.5); opacity: 0; }
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md overflow-x-hidden selection:bg-emergency-red selection:text-white">
+    <!-- Top Navigation Bar -->
+    <header class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl text-primary dark:text-primary-fixed border-b border-outline-variant/30 shadow-sm fixed top-0 left-0 w-full z-50 h-16 flex justify-between items-center px-container_margin_mobile md:px-container_margin_desktop">
+        <div class="flex items-center gap-4">
+            <a aria-label="Go back" class="p-2 rounded-full hover:bg-surface-variant/50 transition-colors active:scale-95 duration-100" href="/">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </a>
+            <h1 class="text-title-lg font-title-lg font-bold text-primary dark:text-primary-fixed">CareConnect AI</h1>
+        </div>
+        <div class="bg-emergency-red text-white font-bold px-4 py-1.5 rounded-full text-label-md animate-pulse">
+            SOS ACTIVE
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="flex-1 mt-16 pb-24 md:pb-8 flex flex-col items-center justify-center px-container_margin_mobile max-w-4xl mx-auto w-full mb-20 md:mb-0">
+        <!-- Emergency Guidance Section -->
+        <section class="text-center mb-10 w-full mt-lg">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-emergency-red/10 text-emergency-red rounded-full mb-4">
+                <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">warning</span>
+                <span class="font-label-md text-label-md uppercase tracking-wider">Critical Event</span>
+            </div>
+            <h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-2">Stay calm. Help is on the way.</h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant">We have notified emergency responders and your primary contacts.</p>
+        </section>
+        <!-- Massive SOS Central Button -->
+        <div class="relative flex items-center justify-center mb-12 w-full max-w-[320px] aspect-square">
+            <div class="sos-ripple" style="animation-delay: 0s;"></div>
+            <div class="sos-ripple" style="animation-delay: 1s;"></div>
+            <div class="sos-ripple" style="animation-delay: 2s;"></div>
+            <button class="relative z-10 w-full h-full rounded-full bg-emergency-red text-white flex flex-col items-center justify-center shadow-[0_20px_50px_rgba(185,28,28,0.4)] emergency-pulse border-8 border-white/20 active:scale-90 transition-transform duration-200" id="sos-main-trigger">
+                <span class="material-symbols-outlined text-[80px] mb-2" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+                <span class="text-[40px] font-black tracking-tighter">SOS</span>
+                <span class="text-label-sm font-label-sm mt-1 uppercase opacity-80">Hold for 3s to cancel</span>
+            </button>
+        </div>
+        <!-- Sharing Live Location Card -->
+        <div class="w-full bg-white rounded-xl border border-outline-variant/30 shadow-sm p-lg flex items-center gap-4 mb-8">
+            <div class="w-16 h-16 rounded-lg overflow-hidden bg-surface-container flex-shrink-0 relative">
+                <img alt="Live Location Map" class="w-full h-full object-cover grayscale-[0.2]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdSaS7xiBHy5sxtz32aMX6XeqhZSml7NR3UH1XuonIU4l-LVe9vK_KVTTpgkJgQ28hkgHEr7SyudMrYw9NmmR75sZ4xoiW4dB-MuK41dJ4_TSHie5Efi88846GoUulof4sBvfgP4_BPlbBvxx57qzT7aSEUHqeZCpwF77MtRu7Y2m1oQpvMCe4pYsND2RygCD7dJTk8KwNKK0nQVsOovL3RLc7nlYd1hNj7tdPGpXo_peB9O07wvL5jn3PVa2Y4GBhtQubPppCKPg"/>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-emergency-red animate-bounce" style="font-variation-settings: 'FILL' 1;">location_on</span>
+                </div>
+            </div>
+            <div class="flex-1">
+                <h3 class="font-title-lg text-title-lg text-on-surface">Sharing Live Location</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant">Sharing with 4 family members &amp; 911</p>
+                <div class="flex items-center gap-1.5 mt-1 text-secondary font-label-md text-label-md">
+                    <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                    Live Updates Active
+                </div>
+            </div>
+        </div>
+        <!-- Action Grid - Bento Style -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
+            <!-- Call Family -->
+            <button class="flex flex-col items-center justify-center gap-3 p-xl bg-white border border-outline-variant/30 rounded-xl shadow-sm hover:bg-surface-variant/20 active:scale-95 transition-all group h-44">
+                <div class="w-14 h-14 rounded-full bg-secondary-container/30 flex items-center justify-center group-hover:bg-secondary-container transition-colors">
+                    <span class="material-symbols-outlined text-secondary text-[32px]">group</span>
+                </div>
+                <span class="font-headline-md text-headline-md text-on-surface">Call Family</span>
+            </button>
+            <!-- Call Ambulance -->
+            <button class="flex flex-col items-center justify-center gap-3 p-xl bg-emergency-red text-white rounded-xl shadow-lg active:scale-95 transition-all h-44">
+                <div class="w-14 h-14 rounded-full bg-white/20 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-[32px]" style="font-variation-settings: 'FILL' 1;">ambulance</span>
+                </div>
+                <span class="font-headline-md text-headline-md">Call 911</span>
+            </button>
+            <!-- Find Hospital -->
+            <button class="flex flex-col items-center justify-center gap-3 p-xl bg-white border border-outline-variant/30 rounded-xl shadow-sm hover:bg-surface-variant/20 active:scale-95 transition-all group h-44">
+                <div class="w-14 h-14 rounded-full bg-tertiary-container/30 flex items-center justify-center group-hover:bg-tertiary-container transition-colors">
+                    <span class="material-symbols-outlined text-tertiary text-[32px]">local_hospital</span>
+                </div>
+                <span class="font-headline-md text-headline-md text-on-surface">Find Hospital</span>
+            </button>
+        </div>
+        <!-- AI Medical Context (Insight) -->
+        <div class="mt-8 w-full p-6 rounded-xl bg-surface-container-lowest border border-primary/20 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10">
+                <span class="material-symbols-outlined text-[64px]">smart_toy</span>
+            </div>
+            <div class="flex items-center gap-2 mb-2">
+                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                <h4 class="font-label-md text-label-md text-primary uppercase tracking-wider">AI Emergency Context</h4>
+            </div>
+            <p class="font-body-md text-body-md text-on-surface-variant relative z-10">
+                Responders have been briefed on your chronic condition (Type II Diabetes) and recent vitals. Your "Stable" history is prioritized for the triage team.
+            </p>
+        </div>
+    </main>
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-safe bg-surface/90 backdrop-blur-xl border-t border-outline-variant/20 shadow-[0_-4px_20px_rgba(15,23,42,0.05)] md:hidden">
+        <a class="flex flex-col items-center justify-center text-on-surface-variant transition-colors hover:text-primary" href="/">
+            <span class="material-symbols-outlined" data-icon="home">home</span>
+            <span class="font-label-sm text-label-sm">Home</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant transition-colors hover:text-primary" href="/health">
+            <span class="material-symbols-outlined" data-icon="monitor_heart">monitor_heart</span>
+            <span class="font-label-sm text-label-sm">Health</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-emergency-red bg-secondary-container/30 rounded-full px-4 py-1" href="/emergency-sos">
+            <span class="material-symbols-outlined" data-icon="notifications_active" style="font-variation-settings: 'FILL' 1;">notifications_active</span>
+            <span class="font-label-sm text-label-sm">SOS</span>
+        </a>
+        <a class="flex flex-col items-center justify-center text-on-surface-variant transition-colors hover:text-primary" href="/profile">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+            <span class="font-label-sm text-label-sm">Profile</span>
+        </a>
+    </nav>
+</body>
+</html>
